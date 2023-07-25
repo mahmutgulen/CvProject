@@ -3,19 +3,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.UI2.Controllers
 {
-	public class CvController : Controller
-	{
-		private readonly IUserService _userService;
+    public class CvController : Controller
+    {
+        private readonly IUserService _userService;
 
-		public CvController(IUserService userService)
-		{
-			_userService = userService;
-		}
+        public CvController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
-		[HttpGet]
-		public IActionResult Index()
-		{
-			return View();
-		}
-	}
+        [HttpGet]
+        public IActionResult Index()
+        {
+            var result = _userService.GetUser(1).Data;
+            return View(result);
+        }
+    }
 }

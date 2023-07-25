@@ -1,4 +1,6 @@
-﻿
+﻿@using CvProject.ENTITY.Dtos.UserDtos
+@model GetUserDto
+
 @{
     Layout = null;
 }
@@ -8,8 +10,28 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>CV</title>
 </head>
 <body>
+    <h1>Burası efkan taylorun cv sayfası </h1>
+    <p>@Model.UserName</p>
+    <p>@Model.UserSurname</p>
+    <p>@Model.UserPhoneNumber</p>
+
+    <img class="picture" src="../CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="~/CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="/CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="~/CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="/CvTheme/assets/images/profile.jpg" alt="">
+
+
+    <img class="picture" src="/CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="/CvTheme/assets/images/profile.jpg" alt="">
+    <img class="picture" src="/CvTheme/assets/images/profile.jpg" alt="">
+
+
 </body>
 </html>
+
+
+

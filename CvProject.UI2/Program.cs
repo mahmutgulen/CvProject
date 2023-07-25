@@ -12,6 +12,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -27,6 +28,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapDefaultControllerRoute();
+});
 
 app.UseAuthorization();
 
