@@ -17,11 +17,10 @@ namespace CvProject.UI2.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult GetUser(int id=1)
+        public PartialViewResult GetUser (int id = 1)
         {
             var result = _userService.GetUser(id).Data;
-            return View(result);
+            return PartialView(result);
         }
 
     }
