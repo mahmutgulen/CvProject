@@ -2389,6 +2389,7 @@
     <Content Include="Themes\CvTheme\assets\scss\pillar-4.scss" />
     <Content Include="Themes\CvTheme\assets\scss\pillar-5.scss" />
     <Content Include="Themes\CvTheme\assets\scss\pillar-6.scss" />
+    <Content Include="Views\Cv\GetUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2406,6 +2407,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CvProject.ENTITY\CvProject.ENTITY.csproj">
+      <Project>{534f091e-e09c-46dc-93a0-a400a07df338}</Project>
+      <Name>CvProject.ENTITY</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
