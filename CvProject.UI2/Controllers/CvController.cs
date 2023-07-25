@@ -18,15 +18,9 @@ namespace CvProject.UI2.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUser()
+        public IActionResult GetUser(int id=1)
         {
-            var result = _userService.GetUser(1).Data;
-            ViewBag.UserName = result.UserName;
-            ViewBag.UserSurname = result.UserSurname;
-            ViewBag.UserPhoneNumber = result.UserPhoneNumber;
-            ViewBag.UserMail = result.UserMail;
-            ViewBag.Position = "Position Get Shit Done!";
-
+            var result = _userService.GetUser(id).Data;
             return View(result);
         }
 
