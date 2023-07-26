@@ -1,4 +1,5 @@
 ﻿using CvProject.BLL.Abstract;
+using CvProject.ENTITY.Dtos.UserDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.UI2.Controllers
@@ -14,14 +15,9 @@ namespace CvProject.UI2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var result = _userService.GetUser(1).Data;
+            return View(result);
         }
-
-        public PartialViewResult GetUser (int id = 1)
-        {
-            var result = _userService.GetUser(id).Data;
-            return PartialView(result);
-        }
-
+       
     }
 }
