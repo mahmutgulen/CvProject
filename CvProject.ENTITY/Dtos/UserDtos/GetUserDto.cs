@@ -13,6 +13,8 @@ namespace CvProject.ENTITY.Dtos.UserDtos
         public string UserSurname { get; set; }
         public string UserMail { get; set; }
         public string UserPhoneNumber { get; set; }
+        public string UserCountry { get; set; }
+        public string UserCity { get; set; }
         public string? UserImage { get; set; }
     }
 }
