@@ -19,6 +19,13 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
 
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<UserSocialMediaManager>().As<IUserSocialMediaService>();
+            builder.RegisterType<EfUserSocialMediaDal>().As<IUserSocialMediaDal>();
+
+
+            builder.RegisterType<UserDescriptionManager>().As<IUserDescriptionService>();
+            builder.RegisterType<EfUserDescriptionDal>().As<IUserDescriptionDal>();
         }
     }
 }

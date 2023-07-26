@@ -2120,7 +2120,6 @@
     <None Include="wwwroot\Themes\CvTheme\assets\fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="wwwroot\Themes\CvTheme\assets\fontawesome\webfonts\fa-v4compatibility.ttf" />
     <None Include="wwwroot\Themes\CvTheme\assets\fontawesome\webfonts\fa-v4compatibility.woff2" />
-    <None Include="wwwroot\Themes\CvTheme\assets\images\profile.jpg" />
     <None Include="wwwroot\Themes\CvTheme\assets\scss\bootstrap\scss\bootstrap-grid.scss" />
     <None Include="wwwroot\Themes\CvTheme\assets\scss\bootstrap\scss\bootstrap-reboot.scss" />
     <None Include="wwwroot\Themes\CvTheme\assets\scss\bootstrap\scss\bootstrap-utilities.scss" />

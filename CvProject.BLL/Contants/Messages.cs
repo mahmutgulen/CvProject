@@ -11,6 +11,7 @@ namespace CvProject.BLL.Contants
         #region ProjectLevel
         public static string unk_err = "unk_err";
         public static string success = "success";
+        public static string not_found = "not_found";
         #endregion
         #region Register
         public static string mail_and_phonenumber_exists = "mail_and_phonenumber_exists";
@@ -21,6 +22,7 @@ namespace CvProject.BLL.Contants
         public static string address_added = "address_added";
 
         public static string address_updated = "address_updated";
+
         #endregion
 
     }
