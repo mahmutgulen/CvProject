@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvProject.ENTITY", "CvProje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvProject.API", "CvProject.API\CvProject.API.csproj", "{DB453A03-50A0-4CD9-A732-4348AA3AF49F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CvProject.UI2", "CvProject.UI2\CvProject.UI2.csproj", "{617BA076-88B4-4DB0-9298-6E54D088D462}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CvProject.MVC", "CvProject.MVC\CvProject.MVC.csproj", "{083F1A7A-8B7C-4B15-A4A3-2068B42917B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{DB453A03-50A0-4CD9-A732-4348AA3AF49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB453A03-50A0-4CD9-A732-4348AA3AF49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB453A03-50A0-4CD9-A732-4348AA3AF49F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{617BA076-88B4-4DB0-9298-6E54D088D462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{617BA076-88B4-4DB0-9298-6E54D088D462}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{617BA076-88B4-4DB0-9298-6E54D088D462}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{617BA076-88B4-4DB0-9298-6E54D088D462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083F1A7A-8B7C-4B15-A4A3-2068B42917B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083F1A7A-8B7C-4B15-A4A3-2068B42917B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083F1A7A-8B7C-4B15-A4A3-2068B42917B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083F1A7A-8B7C-4B15-A4A3-2068B42917B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

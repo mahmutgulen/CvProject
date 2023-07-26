@@ -42,7 +42,7 @@
                     <div class="col">
                         <div class="row p-4 justify-content-center justify-content-md-between">
 
-                            @*userinfo*@
+                           @await Html.PartialAsync("_GetUser")
                             <div class="primary-info col-auto">
                                 <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">@Model.UserName @Model.UserSurname</h1>
                                 <div class="title mb-3">Position</div>

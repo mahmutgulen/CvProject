@@ -2242,4 +2242,8 @@
     <ProjectReference Include="..\CvProject.BLL\CvProject.BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Shared\PartialViews\" />
+  </ItemGroup>
+
 </Project>
