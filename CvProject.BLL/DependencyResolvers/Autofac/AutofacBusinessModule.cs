@@ -26,6 +26,9 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
 
             builder.RegisterType<UserDescriptionManager>().As<IUserDescriptionService>();
             builder.RegisterType<EfUserDescriptionDal>().As<IUserDescriptionDal>();
+
+            builder.RegisterType<UserSkillManager>().As<IUserSkillService>();
+            builder.RegisterType<EfUserSkillDal>().As<IUserSkillDal>();
         }
     }
 }
