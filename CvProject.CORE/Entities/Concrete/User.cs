@@ -11,6 +11,7 @@ namespace CvProject.CORE.Entities.Concrete
     {
         public int Id { get; set; }
         public string UserName { get; set; }
+        public string UserFirstName { get; set; }
         public string UserSurname { get; set; }
         public string UserMail { get; set; }
         public string UserPhoneNumber { get; set; }
