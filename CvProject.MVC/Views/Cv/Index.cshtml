@@ -1,66 +1,8 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    @await Html.PartialAsync("_Head")
-</head>
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CvLayout.cshtml";
+}
 
-<body>
-    <article class="resume-wrapper text-center position-relative">
-        <div class="resume-wrapper-inner mx-auto text-start bg-white shadow-lg">
-
-            <header class="resume-header pt-4 pt-md-0">
-                <div class="row">
-
-                    <div class="col-block col-md-auto resume-picture-holder text-center text-md-start">
-                        <img class="picture" src="/Themes/CvTheme/assets/images/profile.jpg" alt="">
-                    </div>
-
-                    <div class="col">
-                        <div class="row p-4 justify-content-center justify-content-md-between">
-                            @await Component.InvokeAsync("GetUser")
-
-                            @await Component.InvokeAsync("GetSocialMedia")
-                        </div>
-                    </div>
-
-                </div>
-            </header>
-
-            <div class="resume-body p-5">
-
-                @await Component.InvokeAsync("GetDescription")
-
-                <div class="row">
-
-                    <div class="col-lg-9">
-
-                        @await Component.InvokeAsync("GetExperience")
-
-                        @await Component.InvokeAsync("GetReference")
-
-                    </div>
-
-                    <div class="col-lg-3">
-
-                        @await Component.InvokeAsync("GetSkill")
-
-                        @await Component.InvokeAsync("GetEducation")
-
-                        @await Component.InvokeAsync("GetCertificate")
-
-                        @await Component.InvokeAsync("GetLanguage")
-
-                        @await Component.InvokeAsync("GetInterest")
-
-                        @*reference*@
-
-                    </div>
-
-                </div><!--//row-->
-            </div><!--//resume-body-->
-        </div>
-    </article>
-    @await Html.PartialAsync("_Script")
-</body>
-</html>
+<h1>mako z test</h1>
 
