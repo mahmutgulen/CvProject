@@ -34,6 +34,8 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
             builder.RegisterType<UserExperienceManager>().As<IUserExperienceService>();
             builder.RegisterType<EfUserExperienceDal>().As<IUserExperienceDal>();
 
+            builder.RegisterType<UserEducationManager>().As<IUserEducationService>();
+            builder.RegisterType<EfUserEducationDal>().As<IUserEducationDal>();
 
 
         }

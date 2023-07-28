@@ -1,0 +1,19 @@
+﻿@using CvProject.ENTITY.Dtos.UserEducationDtos
+@model List<GetUserEducationDto>
+
+<section class="resume-section education-section mb-5">
+    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Education</h2>
+    <div class="resume-section-content">
+        <ul class="list-unstyled">
+            @foreach (var item in Model)
+            {
+                <li class="mb-2">
+                    <div class="resume-degree font-weight-bold">@item.EducationBranch</div>
+                    <div class="resume-degree-org">@item.EducationName</div>
+                    <div class="resume-degree-time">@item.EducationCity, @item.EducationCountry</div>
+                    <div class="resume-degree-time">@item.EducationStartDate - @item.EducationEndDate</div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
