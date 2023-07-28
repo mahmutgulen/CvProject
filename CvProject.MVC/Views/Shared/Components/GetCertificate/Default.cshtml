@@ -1,0 +1,24 @@
+﻿@using CvProject.ENTITY.Dtos.UserCertificateDtos
+
+@model List<GetUserCertificateDto>
+
+
+<section class="resume-section reference-section mb-5">
+    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Certificates</h2>
+    <div class="resume-section-content">
+        <ul class="list-unstyled resume-awards-list">
+            @foreach (var item in Model)
+            {
+                <li class="mb-2 ps-4 position-relative">
+                    <i class="resume-award-icon fa fa-certificate position-absolute" data-fa-transform="shrink-2"></i>
+                    <div class="resume-award-name">@item.CertificateName</div>
+
+                    <div class="resume-award-desc">@item.CertificateProvider</div>
+
+                    <div class="resume-degree-time">@item.CertificateCity, @item.CertificateCountry</div>
+                    <div class="resume-degree-time">@item.CertificateDate.Year | @item.CertificateDate.ToString("MMMM")</div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>

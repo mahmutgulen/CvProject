@@ -38,6 +38,10 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
             builder.RegisterType<EfUserEducationDal>().As<IUserEducationDal>();
 
 
+            builder.RegisterType<UserCertificateManager>().As<IUserCertificateService>();
+            builder.RegisterType<EfUserCertificateDal>().As<IUserCertificateDal>();
+
+
         }
     }
 }
