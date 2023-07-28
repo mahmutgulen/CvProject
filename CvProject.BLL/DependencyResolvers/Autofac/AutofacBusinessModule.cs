@@ -44,6 +44,12 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
             builder.RegisterType<UserLanguageManager>().As<IUserLanguageService>();
             builder.RegisterType<EfUserLanguageDal>().As<IUserLanguageDal>();
 
+            builder.RegisterType<UserInterestManager>().As<IUserInterestService>();
+            builder.RegisterType<EfUserInterestDal>().As<IUserInterestDal>();
+
+            builder.RegisterType<UserReferenceManager>().As<IUserReferenceService>();
+            builder.RegisterType<EfUserReferenceDal>().As<IUserReferenceDal>();
+
 
         }
     }

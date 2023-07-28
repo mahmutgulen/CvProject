@@ -1,0 +1,22 @@
+﻿@using CvProject.ENTITY.Dtos.UserReferenceDtos
+@model List<GetUserReferenceDto>
+
+<section class="resume-section reference-section mb-5">
+    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">References</h2>
+    <div class="resume-section-content">
+        <ul class="list-unstyled resume-awards-list">
+            @foreach (var x in Model)
+            {
+                <li class="mb-2 ps-4 position-relative">
+                    <i class="resume-award-icon fa fa-asterisk position-absolute" data-fa-transform="shrink-2"></i>
+                    <div class="resume-award-name">@x.ReferenceName @x.ReferenceSurname</div>
+
+                    <div class="resume-award-desc">@x.ReferenceCompany</div>
+
+                    <div class="resume-degree-time">@x.ReferencePhoneNumber</div>
+                    <div class="resume-degree-time">@x.ReferenceMail</div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
