@@ -3,6 +3,7 @@ using CvProject.BLL.Abstract;
 using CvProject.BLL.Concrete;
 using CvProject.DAL.Abstract;
 using CvProject.DAL.Concrete;
+using CvProject.ENTITY.Concrete;
 
 namespace CvProject.BLL.DependencyResolvers.Autofac
 {
@@ -29,6 +30,12 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
 
             builder.RegisterType<UserSkillManager>().As<IUserSkillService>();
             builder.RegisterType<EfUserSkillDal>().As<IUserSkillDal>();
+
+            builder.RegisterType<UserExperienceManager>().As<IUserExperienceService>();
+            builder.RegisterType<EfUserExperienceDal>().As<IUserExperienceDal>();
+
+
+
         }
     }
 }

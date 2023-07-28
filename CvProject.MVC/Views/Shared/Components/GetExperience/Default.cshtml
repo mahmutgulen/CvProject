@@ -1,0 +1,31 @@
+﻿@using CvProject.ENTITY.Dtos.UserExperienceDtos
+@model List<GetUserExperienceDto>
+
+@foreach (var x in Model)
+{
+    <section class="resume-section experience-section mb-5">
+        <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Experience</h2>
+        <div class="resume-section-content">
+            <div class="resume-timeline position-relative">
+
+                <article class="resume-timeline-item position-relative pb-5">
+                    <div class="resume-timeline-item-header mb-2">
+                        <div class="d-flex flex-column flex-md-row">
+                            <h3 class="resume-position-title font-weight-bold mb-1">@x.CompanyName</h3>
+                            <div class="resume-company-name ms-auto">@x.ExperienceStartDate - @x.ExperienceEndDate</div>
+                        </div>
+                        <h4 class="resume-position-title font-weight-regular">@x.Position</h4>
+                    </div>
+
+                    <div class="resume-timeline-item-desc">
+
+                        <p>@x.Description</p>
+
+                        <h4 class="resume-timeline-item-desc-heading font-weight-bold">@x.CompanyCity, @x.CompanyCountry</h4>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+}
+
