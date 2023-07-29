@@ -26,9 +26,18 @@ namespace CvProject.BLL.Concrete
             try
             {
                 var checkUserSocialMedia = _userSocialMediaDal.GetAll(x => x.UserId == dto.UserId);
+                //4 adetten fazla link ekleyememeli
                 if (checkUserSocialMedia.Count >= 4)
                 {
                     return new ErrorDataResult<bool>(false, "maximum_of_4_social_media_can_be_added", Messages.maximum_of_4_social_media_can_be_added);
+                }
+                //aynı linkten ekleyememeli
+                foreach (var item in checkUserSocialMedia)
+                {
+                    if (item.SocialMediaName == dto.SocialMediaName)
+                    {
+                        return new ErrorDataResult<bool>(false, "social_media_already_exists", Messages.social_media_already_exists);
+                    }
                 }
 
                 var socialMedia = new UserSocialMedia

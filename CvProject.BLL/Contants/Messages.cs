@@ -29,6 +29,7 @@ namespace CvProject.BLL.Contants
         #endregion
         #region SocialMedia
         public static string maximum_of_4_social_media_can_be_added = "maximum_of_4_social_media_can_be_added";
+        public static string social_media_already_exists = "social_media_already_exists";
         #endregion
 
 
