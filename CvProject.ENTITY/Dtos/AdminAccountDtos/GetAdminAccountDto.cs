@@ -9,7 +9,7 @@ namespace CvProject.ENTITY.Dtos.AdminAccountDtos
 {
     public class GetAdminAccountDto : IDto
     {
-
+        public int UserId { get; set; }
         public string? UserName { get; set; }
         public string? UserDescription { get; set; }
         public string? UserImage { get; set; }

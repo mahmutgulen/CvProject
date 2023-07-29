@@ -1,4 +1,5 @@
 ﻿using CvProject.BLL.Abstract;
+using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.MVC.Controllers
@@ -27,6 +28,15 @@ namespace CvProject.MVC.Controllers
         {
             var result = _adminAccountService.GetAdminAccount(1).Data;
             return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult AdminAccount(GetAdminAccountDto dto)
+        {
+            dto.UserId = 1;
+            var result = _adminAccountService.UpdateAdminAccount(dto);
+            ViewBag.Message = result.MessageCode;
+            return RedirectToAction("AdminAccount", "Admin");
         }
     }
 }

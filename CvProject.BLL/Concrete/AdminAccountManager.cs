@@ -56,23 +56,23 @@ namespace CvProject.BLL.Concrete
             }
         }
 
-        public IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto)
+        public IDataResult<bool> UpdateAdminAccount(GetAdminAccountDto dto)
         {
             try
             {
                 var user = _userDal.Get(x => x.Id == dto.UserId);
-                var address = _userAddressDal.Get(x => x.UserId == dto.UserId;
+                
+                var address = _userAddressDal.Get(x => x.UserId == dto.UserId);
                 var description = _userDescriptionDal.Get(x => x.UserId == dto.UserId);
-
+                user.UserName = user.UserName;
                 user.UserPhoneNumber = dto.UserPhoneNumber;
                 user.UserSurname = dto.UserSurname;
                 user.UserMail = dto.UserMail;
                 user.UserFirstName = dto.UserFirstName;
-                user.UserSurname = dto.UserSurname;
                 user.UserImage = dto.UserImage;
                 address.UserCity = dto.UserCity;
                 address.UserCountry = dto.UserCountry;
-                description.UserDescriptionText = dto.UserDescription == null ? "text here" : dto.UserDescription;
+                description.UserDescriptionText = dto.UserDescription;
 
                 _userAddressDal.Update(address);
                 _userDescriptionDal.Update(description);
