@@ -1,12 +1,14 @@
 ﻿using Azure.Identity;
 using CvProject.BLL.Abstract;
 using CvProject.BLL.Contants;
+using CvProject.CORE.Entities.Concrete;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +58,32 @@ namespace CvProject.BLL.Concrete
 
         public IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = _userDal.Get(x => x.Id == dto.UserId);
+                var address = _userAddressDal.Get(x => x.UserId == dto.UserId;
+                var description = _userDescriptionDal.Get(x => x.UserId == dto.UserId);
+
+                user.UserPhoneNumber = dto.UserPhoneNumber;
+                user.UserSurname = dto.UserSurname;
+                user.UserMail = dto.UserMail;
+                user.UserFirstName = dto.UserFirstName;
+                user.UserSurname = dto.UserSurname;
+                user.UserImage = dto.UserImage;
+                address.UserCity = dto.UserCity;
+                address.UserCountry = dto.UserCountry;
+                description.UserDescriptionText = dto.UserDescription == null ? "text here" : dto.UserDescription;
+
+                _userAddressDal.Update(address);
+                _userDescriptionDal.Update(description);
+                _userDal.Update(user);
+
+                return new SuccessDataResult<bool>(true, "account_updated", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
     }
 }
