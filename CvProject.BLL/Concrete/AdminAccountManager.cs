@@ -53,5 +53,10 @@ namespace CvProject.BLL.Concrete
                 return new ErrorDataResult<GetAdminAccountDto>(new GetAdminAccountDto(), e.Message, Messages.unk_err);
             }
         }
+
+        public IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

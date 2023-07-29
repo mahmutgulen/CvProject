@@ -11,5 +11,7 @@ namespace CvProject.BLL.Abstract
     public interface IAdminAccountService
     {
         IDataResult<GetAdminAccountDto> GetAdminAccount(int userId);
+
+        IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto);
     }
 }
