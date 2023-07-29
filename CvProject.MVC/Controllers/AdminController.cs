@@ -8,5 +8,15 @@ namespace CvProject.MVC.Controllers
         {
             return View();
         }
+
+        public IActionResult AdminPassword()
+        {
+            return View();
+        }
+
+        public IActionResult AdminAccount()
+        {
+            return View();
+        }
     }
 }
