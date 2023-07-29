@@ -20,9 +20,10 @@ namespace CvProject.BLL.Contants
         #endregion
         #region Address
         public static string address_added = "address_added";
-
         public static string address_updated = "address_updated";
-
+        #endregion
+        #region Password
+        public static string new_password_must_not_be_same_oldpassword = "new_password_must_not_be_same_oldpassword";
         #endregion
 
     }
