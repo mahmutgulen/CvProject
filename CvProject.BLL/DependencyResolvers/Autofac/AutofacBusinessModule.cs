@@ -50,6 +50,7 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
             builder.RegisterType<UserReferenceManager>().As<IUserReferenceService>();
             builder.RegisterType<EfUserReferenceDal>().As<IUserReferenceDal>();
 
+            builder.RegisterType<AdminAccountManager>().As<IAdminAccountService>();
 
         }
     }
