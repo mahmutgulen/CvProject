@@ -16,6 +16,7 @@ builder.Services.AddMvc();
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "Default",

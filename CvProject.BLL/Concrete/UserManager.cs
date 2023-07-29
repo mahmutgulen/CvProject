@@ -26,7 +26,7 @@ namespace CvProject.BLL.Concrete
 
                 var dto = new GetUserDto
                 {
-                    UserFirstName = user.UserName,
+                    UserFirstName = user.UserFirstName,
                     UserSurname = user.UserSurname,
                     UserMail = user.UserMail,
                     UserPhoneNumber = user.UserPhoneNumber,
