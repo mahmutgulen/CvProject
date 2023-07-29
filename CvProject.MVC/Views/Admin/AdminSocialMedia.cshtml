@@ -1,0 +1,80 @@
+﻿@using CvProject.ENTITY.Dtos.UserSocialMediaDtos
+
+@model List<GetUserSocialMediaDto>
+
+@{
+    ViewData["Title"] = "AdminSocialMedia";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row flex-lg-nowrap">
+
+        <div class="col">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Social Media Links</h5>
+            </div>
+
+            <div class="row flex-lg-nowrap">
+                <div class="col mb-3">
+                    <div class="e-panel card">
+                        <div class="card-body">
+                            <div class="e-table">
+                                <div class="table-responsive table-lg mt-3">
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+
+                                                <th>İcon</th>
+                                                <th class="max-width">Name</th>
+                                                <th class="sortable">Link</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model)
+                                            {
+                                                var newLink = item.SocialMediaLink.Replace("https://www.", "");
+
+                                                <tr>
+                                                    <td class="align-middle text-center">
+                                                        <div class="bg-light d-inline-flex justify-content-center align-items-center align-top" style="width: 35px; height: 35px; border-radius: 3px;"><i class="@item.SocialMediaIcon" style="opacity: 0.8;"></i></div>
+                                                    </td>
+
+
+
+                                                    <td class="text-nowrap align-middle">@item.SocialMediaName</td>
+
+                                                    <td class="text-nowrap align-middle"><span>@newLink</span></td>
+
+
+
+                                                    <td class="text-center align-middle">
+                                                        <div class="btn-group align-top">
+                                                            <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
+                                                            <button class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @await Component.InvokeAsync("AdminAddSocialMedia")
+        </div>
+    </div>
+</div>
+
+
+

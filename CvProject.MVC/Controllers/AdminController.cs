@@ -9,11 +9,13 @@ namespace CvProject.MVC.Controllers
     {
         private readonly IAdminAccountService _adminAccountService;
         private readonly IAuthService _authService;
+        private readonly IUserSocialMediaService _userSocialMediaService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
+            _userSocialMediaService = userSocialMediaService;
         }
 
         public IActionResult Index()
@@ -48,6 +50,13 @@ namespace CvProject.MVC.Controllers
             var result = _adminAccountService.UpdateAdminAccount(dto);
             ViewBag.Message = result.MessageCode;
             return RedirectToAction("AdminAccount", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AdminSocialMedia()
+        {
+            var result=_userSocialMediaService.GetUserSocialMedia(1).Data;
+            return View(result);
         }
     }
 }
