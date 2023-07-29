@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CvProject.BLL.Abstract;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.MVC.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IAdminAccountService _adminAccountService;
+
+        public AdminController(IAdminAccountService adminAccountService)
+        {
+            _adminAccountService = adminAccountService;
+        }
+
         public IActionResult Index()
         {
             return RedirectToAction("AdminAccount", "Admin");
@@ -14,9 +22,11 @@ namespace CvProject.MVC.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AdminAccount()
         {
-            return View();
+            var result = _adminAccountService.GetAdminAccount(1).Data;
+            return View(result);
         }
     }
 }
