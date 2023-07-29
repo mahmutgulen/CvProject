@@ -6,7 +6,7 @@ namespace CvProject.MVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("AdminAccount", "Admin");
         }
 
         public IActionResult AdminPassword()
