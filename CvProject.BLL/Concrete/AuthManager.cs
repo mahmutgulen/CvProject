@@ -27,16 +27,23 @@ namespace CvProject.BLL.Concrete
             {
                 var user = _userDal.Get(x => x.Id == dto.UserId);
 
-                if (dto.UserOldPassword == dto.UserNewPassword)
+                if (user.UserPassword == dto.UserOldPassword)
+                {
+                    return new ErrorDataResult<bool>(false, "oldpassword_is_wrong", Messages.oldpassword_is_wrong);
+                }
+
+                if (user.UserPassword == dto.UserNewPassword)
                 {
                     return new ErrorDataResult<bool>(false, "new_password_must_not_be_same_oldpassword", Messages.new_password_must_not_be_same_oldpassword);
                 }
+
                 if (dto.UserNewPassword != dto.UserConfirmPassword)
                 {
-
+                    return new ErrorDataResult<bool>(false, "passwords_must_be_same", Messages.passwords_must_be_same);
                 }
 
-
+                user.UserPassword = dto.UserNewPassword;
+                _userDal.Update(user);
                 return new SuccessDataResult<bool>(true, "password_changed", Messages.success);
             }
             catch (Exception e)

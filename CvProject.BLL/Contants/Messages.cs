@@ -24,6 +24,8 @@ namespace CvProject.BLL.Contants
         #endregion
         #region Password
         public static string new_password_must_not_be_same_oldpassword = "new_password_must_not_be_same_oldpassword";
+        public static string passwords_must_be_same = "passwords_must_be_same";
+        public static string oldpassword_is_wrong = "oldpassword_is_wrong";
         #endregion
 
     }
