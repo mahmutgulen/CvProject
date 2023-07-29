@@ -27,7 +27,7 @@ namespace CvProject.BLL.Concrete
             {
                 var user = _userDal.Get(x => x.Id == dto.UserId);
 
-                if (user.UserPassword == dto.UserOldPassword)
+                if (user.UserPassword != dto.UserOldPassword)
                 {
                     return new ErrorDataResult<bool>(false, "oldpassword_is_wrong", Messages.oldpassword_is_wrong);
                 }
