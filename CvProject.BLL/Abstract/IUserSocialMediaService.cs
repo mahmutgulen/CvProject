@@ -11,5 +11,6 @@ namespace CvProject.BLL.Abstract
     public interface IUserSocialMediaService
     {
         IDataResult<List<GetUserSocialMediaDto>> GetUserSocialMedia(int userId);
+        IDataResult<bool> AddSocialMedia(AddSocialMediaDto dto);
     }
 }

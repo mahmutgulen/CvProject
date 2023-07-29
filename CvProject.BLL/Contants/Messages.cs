@@ -27,6 +27,10 @@ namespace CvProject.BLL.Contants
         public static string passwords_must_be_same = "passwords_must_be_same";
         public static string oldpassword_is_wrong = "oldpassword_is_wrong";
         #endregion
+        #region SocialMedia
+        public static string maximum_of_4_social_media_can_be_added = "maximum_of_4_social_media_can_be_added";
+        #endregion
+
 
     }
 }

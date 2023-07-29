@@ -1,31 +1,37 @@
 ﻿
 
+
 <form method="post" class="form-control col-md-12">
 
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Social Media
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Facebook</a>
-            <a class="dropdown-item" href="#">Linkedin</a>
-            <a class="dropdown-item" href="#">Youtube</a>
-            <a class="dropdown-item" href="#">Github</a>
-            <a class="dropdown-item" href="#">Instagram</a>
-            <a class="dropdown-item" href="#">Twitter</a>
-        </div>
-    </div>
+    <label class="form-label">Select Social Media</label>
 
     <br />
 
+    <select class="custom-select" name="SocialMediaName">
+        <option value="Facebook">Facebook</option>
+        <option value="Linkedin">Linkedin</option>
+        <option value="Youtube">Youtube</option>
+        <option value="Github">Github</option>
+        <option value="Instagram">Instagram</option>
+        <option value="Twitter">Twitter</option>
+    </select>
+
+    <br />
+    <br />
+
     <label class="form-label">Link</label>
-    <input type="text" class="form-control" name="" />
+    <input type="text" class="form-control" name="SocialMediaLink" />
 
     <br />
     <button type="submit" class="btn btn-primary btn-block">Add Link</button>
     <br />
+
 </form>
 <br />
+
+
+
+
 
 
 

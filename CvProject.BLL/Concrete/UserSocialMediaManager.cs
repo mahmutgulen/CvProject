@@ -2,6 +2,7 @@
 using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,35 @@ namespace CvProject.BLL.Concrete
         public UserSocialMediaManager(IUserSocialMediaDal userSocialMediaDal)
         {
             _userSocialMediaDal = userSocialMediaDal;
+        }
+
+        public IDataResult<bool> AddSocialMedia(AddSocialMediaDto dto)
+        {
+            try
+            {
+                var checkUserSocialMedia = _userSocialMediaDal.GetAll(x => x.UserId == dto.UserId);
+                if (checkUserSocialMedia.Count >= 4)
+                {
+                    return new ErrorDataResult<bool>(false, "maximum_of_4_social_media_can_be_added", Messages.maximum_of_4_social_media_can_be_added);
+                }
+
+                var socialMedia = new UserSocialMedia
+                {
+                    SocialMediaIcon = dto.SocialMediaIcon,
+                    SocialMediaLink = dto.SocialMediaLink,
+                    SocialMediaName = dto.SocialMediaName,
+                    SocialMediaStatus = true,
+                    UserId = dto.UserId
+                };
+
+                _userSocialMediaDal.Add(socialMedia);
+
+                return new SuccessDataResult<bool>(true, "social_media_added", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
 
         public IDataResult<List<GetUserSocialMediaDto>> GetUserSocialMedia(int userId)
