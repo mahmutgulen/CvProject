@@ -11,5 +11,6 @@ namespace CvProject.BLL.Abstract
     public interface IUserExperienceService
     {
         IDataResult<List<GetUserExperienceDto>> GetUserExperience(int userId);
+        IDataResult<bool> DeleteExperience(int itemId);
     }
 }

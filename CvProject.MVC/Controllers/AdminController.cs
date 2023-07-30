@@ -81,15 +81,23 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteSocialMedia(int id)
         {
             var result = _userSocialMediaService.DeleteSocialMedia(id);
-            return RedirectToAction("AdminSocialMedia","Admin");
+            return RedirectToAction("AdminSocialMedia", "Admin");
         }
 
         [HttpGet]
         public IActionResult AdminExperience()
         {
-            var result=_experienceService.GetUserExperience(1).Data;
+            var result = _experienceService.GetUserExperience(1).Data;
             return View(result);
         }
+
+        [HttpGet]
+        public IActionResult DeleteExperience(int id)
+        {
+            var result = _experienceService.DeleteExperience(id);
+            return RedirectToAction("AdminExperience", "Admin");
+        }
+
 
     }
 }

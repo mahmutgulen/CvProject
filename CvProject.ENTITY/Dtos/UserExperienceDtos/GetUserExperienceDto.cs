@@ -9,6 +9,7 @@ namespace CvProject.ENTITY.Dtos.UserExperienceDtos
 {
     public class GetUserExperienceDto : IDto
     {
+        public int Id { get; set; }
         public string CompanyName { get; set; }
         public string CompanyCountry { get; set; }
         public string CompanyCity { get; set; }

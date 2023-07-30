@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,22 @@ namespace CvProject.BLL.Concrete
         public UserExperienceManager(IUserExperienceDal userExperienceDal)
         {
             _userExperienceDal = userExperienceDal;
+        }
+
+        public IDataResult<bool> DeleteExperience(int itemId)
+        {
+            try
+            {
+                var item = _userExperienceDal.Get(x => x.Id == itemId);
+
+                _userExperienceDal.Delete(item);
+
+                return new SuccessDataResult<bool>(true, "item_deleted", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
 
         public IDataResult<List<GetUserExperienceDto>> GetUserExperience(int userId)
@@ -45,7 +62,8 @@ namespace CvProject.BLL.Concrete
                         Description = item.Description,
                         ExperienceEndDate = item.ExperienceEndDate,
                         ExperienceStartDate = item.ExperienceStartDate,
-                        Position = item.Position
+                        Position = item.Position,
+                        Id=item.Id,
                     });
                 }
 
