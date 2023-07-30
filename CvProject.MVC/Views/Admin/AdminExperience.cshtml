@@ -1,0 +1,45 @@
+﻿@using CvProject.ENTITY.Dtos.UserExperienceDtos
+@model List<GetUserExperienceDto>
+
+@{
+    ViewData["Title"] = "AdminExperience";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<section class="section gray-bg" id="resume">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title ml-3">
+                    <br />
+                    <h2>Experiences</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 m-15px-tb">
+            <div class="resume-box">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+
+                            <hr>
+                            <div class="icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <span class="time">@item.ExperienceStartDate.Year - @item.ExperienceEndDate.Year</span>
+                            <br>
+                            <span class="time">@item.CompanyCity, @item.CompanyCountry</span>
+                            <h5>@item.Position - @item.CompanyName</h5>
+                            <p>@item.Description</p>
+                        </li>
+                    }
+                </ul>
+                <br />
+            </div>
+        </div>
+
+    </div>
+    </div>
+</section>

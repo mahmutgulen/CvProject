@@ -11,12 +11,14 @@ namespace CvProject.MVC.Controllers
         private readonly IAdminAccountService _adminAccountService;
         private readonly IAuthService _authService;
         private readonly IUserSocialMediaService _userSocialMediaService;
+        private readonly IUserExperienceService _experienceService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
             _userSocialMediaService = userSocialMediaService;
+            _experienceService = experienceService;
         }
 
         public IActionResult Index()
@@ -80,6 +82,13 @@ namespace CvProject.MVC.Controllers
         {
             var result = _userSocialMediaService.DeleteSocialMedia(id);
             return RedirectToAction("AdminSocialMedia","Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AdminExperience()
+        {
+            var result=_experienceService.GetUserExperience(1).Data;
+            return View(result);
         }
 
     }
