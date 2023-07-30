@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserEducationDtos
 {
-    public class GetUserEducationDto : IDto
+    public class AddUserEducationDto : IDto
     {
-        public int Id { get; set; }
+     
+        public int UserId { get; set; }
         public string EducationName { get; set; }
         public string EducationBranch { get; set; }
         public string EducationCountry { get; set; }

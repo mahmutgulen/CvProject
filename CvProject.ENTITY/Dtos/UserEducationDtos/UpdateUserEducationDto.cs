@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserEducationDtos
 {
-    public class GetUserEducationDto : IDto
+    public class UpdateUserEducationDto : IDto
     {
         public int Id { get; set; }
         public string EducationName { get; set; }

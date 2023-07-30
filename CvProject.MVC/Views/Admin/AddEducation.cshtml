@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "AddEducation";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-body">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h3>Add Education</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Education Name</label>
+            <input type="text" class="form-control" name="EducationName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Branch</label>
+            <input type="text" class="form-control" name="EducationBranch">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4"> Education Country</label>
+            <input type="text" class="form-control" name="EducationCountry">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Education City</label>
+            <input type="text" class="form-control" name="EducationCity">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Start Date</label>
+            <input type="date" class="form-control" name="EducationStartDate">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">End Date</label>
+            <input type="date" class="form-control" name="EducationEndDate">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Education</button>
+    </form>
+    <br />
+    <a href="/Admin/AdminEducation" class="btn btn-primary">Back</a>
+</div>

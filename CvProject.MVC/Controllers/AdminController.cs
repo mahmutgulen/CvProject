@@ -8,6 +8,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Diagnostics.Metrics;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
 using CvProject.ENTITY.Dtos.UserSkillDtos;
+using CvProject.ENTITY.Dtos.UserEducationDtos;
 
 namespace CvProject.MVC.Controllers
 {
@@ -19,8 +20,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserExperienceService _experienceService;
         private readonly IUserReferenceService _userReferenceService;
         private readonly IUserSkillService _skillService;
+        private readonly IUserEducationService _educationService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -28,6 +30,7 @@ namespace CvProject.MVC.Controllers
             _experienceService = experienceService;
             _userReferenceService = userReferenceService;
             _skillService = skillService;
+            _educationService = educationService;
         }
 
         public IActionResult Index()
@@ -186,9 +189,52 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddSkill(AddUserSkillDto dto)
         {
-            dto.UserId=1;
-            var result=_skillService.AddSkill(dto);
+            dto.UserId = 1;
+            var result = _skillService.AddSkill(dto);
             return RedirectToAction("AdminSkill", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AdminEducation()
+        {
+            var result = _educationService.GetUserEducation(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteEducation(int id)
+        {
+            var result = _educationService.DeleteEducation(id);
+            return RedirectToAction("AdminEducation", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AddEducation()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddEducation(AddUserEducationDto dto)
+        {
+            dto.UserId = 1;
+            var result = _educationService.AddEducation(dto);
+            return RedirectToAction("AdminEducation", "Admin");
+        }
+
+
+        [HttpGet]
+        public IActionResult UpdateEducation(int id)
+        {
+            var result = _educationService.GetByIdUserEducation(id).Data;
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateEducation(UpdateUserEducationDto dto)
+        {
+            var result = _educationService.UpdateEducation(dto);
+            return RedirectToAction("AdminEducation", "Admin");
         }
     }
 }
