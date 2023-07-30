@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserCertificateDtos
 {
-    public class GetUserCertificateDto : IDto
+    public class AddUserCertificateDto : IDto
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public DateTime CertificateDate { get; set; }
         public string CertificateProvider { get; set; }
         public string CertificateName { get; set; }
