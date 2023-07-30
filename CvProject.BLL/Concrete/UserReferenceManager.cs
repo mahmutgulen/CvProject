@@ -20,7 +20,7 @@ namespace CvProject.BLL.Concrete
         {
             try
             {
-                var check = _userReferenceDal.Get(x => x.ReferenceMail == dto.ReferenceMail);
+                var check = _userReferenceDal.Get(x => x.ReferenceMail == dto.ReferenceMail && x.UserId == dto.UserId);
 
                 if (check != null)
                 {

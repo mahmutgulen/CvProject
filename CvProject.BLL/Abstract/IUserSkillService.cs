@@ -11,5 +11,7 @@ namespace CvProject.BLL.Abstract
     public interface IUserSkillService
     {
         IDataResult<List<GetUserSkillDto>> GetUserSkill(int userId);
+        IDataResult<bool> AddSkill(AddUserSkillDto dto);
+        IDataResult<bool> DeleteSkill(int id);
     }
 }

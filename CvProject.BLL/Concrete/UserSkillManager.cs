@@ -2,6 +2,7 @@
 using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserSkillDtos;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,47 @@ namespace CvProject.BLL.Concrete
             _userSkillDal = userSkillDal;
         }
 
+        public IDataResult<bool> AddSkill(AddUserSkillDto dto)
+        {
+            try
+            {
+                var skill = _userSkillDal.Get(x => x.SkillName == dto.SkillName && x.UserId == dto.UserId);
+                if (skill != null)
+                {
+                    return new ErrorDataResult<bool>(false, "skill_already_exists", Messages.skill_already_exists);
+                }
+
+                var newSkill = new UserSkill
+                {
+                    SkillName = dto.SkillName,
+                    SkillStatus = true,
+                    SkillProgress = dto.SkillProgress,
+                    UserId = dto.UserId,
+                };
+                _userSkillDal.Add(newSkill);
+                return new SuccessDataResult<bool>(true, "added_skill", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
+        public IDataResult<bool> DeleteSkill(int id)
+        {
+            try
+            {
+                var item = _userSkillDal.Get(x => x.Id == id);
+
+                _userSkillDal.Delete(item);
+                return new SuccessDataResult<bool>(true, "skill_deleted", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
         public IDataResult<List<GetUserSkillDto>> GetUserSkill(int userId)
         {
             try
@@ -36,7 +78,8 @@ namespace CvProject.BLL.Concrete
                     list.Add(new GetUserSkillDto
                     {
                         SkillName = item.SkillName,
-                        SkillProgress = item.SkillProgress
+                        SkillProgress = item.SkillProgress,
+                        Id = item.Id,
                     });
                 }
 

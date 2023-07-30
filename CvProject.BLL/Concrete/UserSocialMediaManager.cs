@@ -34,7 +34,7 @@ namespace CvProject.BLL.Concrete
                 //aynı linkten ekleyememeli
                 foreach (var item in checkUserSocialMedia)
                 {
-                    if (item.SocialMediaName == dto.SocialMediaName)
+                    if (item.SocialMediaName == dto.SocialMediaName && item.UserId == dto.UserId)
                     {
                         return new ErrorDataResult<bool>(false, "social_media_already_exists", Messages.social_media_already_exists);
                     }

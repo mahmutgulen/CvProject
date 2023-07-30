@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserSkillDtos
 {
-    public class GetUserSkillDto : IDto
+    public class AddUserSkillDto:IDto
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string SkillName { get; set; }
         public byte SkillProgress { get; set; }
     }

@@ -33,6 +33,10 @@ namespace CvProject.BLL.Contants
         #endregion
         #region Reference
         public static string reference_already_exists = "reference_already_exists";
+
+        #endregion
+        #region Skill
+        public static string skill_already_exists = "skill_already_exists";
         #endregion
 
 

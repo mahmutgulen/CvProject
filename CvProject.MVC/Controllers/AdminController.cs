@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Diagnostics.Metrics;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
+using CvProject.ENTITY.Dtos.UserSkillDtos;
 
 namespace CvProject.MVC.Controllers
 {
@@ -17,14 +18,16 @@ namespace CvProject.MVC.Controllers
         private readonly IUserSocialMediaService _userSocialMediaService;
         private readonly IUserExperienceService _experienceService;
         private readonly IUserReferenceService _userReferenceService;
+        private readonly IUserSkillService _skillService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
             _userSocialMediaService = userSocialMediaService;
             _experienceService = experienceService;
             _userReferenceService = userReferenceService;
+            _skillService = skillService;
         }
 
         public IActionResult Index()
@@ -151,6 +154,7 @@ namespace CvProject.MVC.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddReference(AddUserReferenceDto dto)
         {
@@ -159,6 +163,33 @@ namespace CvProject.MVC.Controllers
             return RedirectToAction("AdminReference", "Admin");
         }
 
+        [HttpGet]
+        public IActionResult AdminSkill()
+        {
+            var result = _skillService.GetUserSkill(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteSkill(int id)
+        {
+            var result = _skillService.DeleteSkill(id);
+            return RedirectToAction("AdminSkill", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AddSkill()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddSkill(AddUserSkillDto dto)
+        {
+            dto.UserId=1;
+            var result=_skillService.AddSkill(dto);
+            return RedirectToAction("AdminSkill", "Admin");
+        }
     }
 }
 

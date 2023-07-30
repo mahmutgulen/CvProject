@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "AddSkill";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-body">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h3>Add Skill</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Skill Name</label>
+            <input type="text" class="form-control" name="SkillName">
+        </div>
+
+
+        <div class="form-group">
+     <label for="inputEmail4">Skill Level-Progress</label>
+            <input type="number" class="form-control" name="SkillProgress">
+        </div>
+
+       
+
+        <button type="submit" class="btn btn-primary">Add Skill</button>
+    </form>
+    <br />
+    <a href="/Admin/AdminSkill" class="btn btn-primary">Back</a>
+</div>
