@@ -12,5 +12,6 @@ namespace CvProject.BLL.Abstract
     {
         IDataResult<List<GetUserSocialMediaDto>> GetUserSocialMedia(int userId);
         IDataResult<bool> AddSocialMedia(AddSocialMediaDto dto);
+        IDataResult<bool> DeleteSocialMedia(int itemId);
     }
 }

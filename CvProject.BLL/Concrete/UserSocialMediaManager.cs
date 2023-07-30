@@ -25,7 +25,7 @@ namespace CvProject.BLL.Concrete
         {
             try
             {
-                var checkUserSocialMedia = _userSocialMediaDal.GetAll(x => x.UserId == dto.UserId);
+                var checkUserSocialMedia = _userSocialMediaDal.GetAll(x => x.UserId == dto.UserId && x.SocialMediaStatus == true);
                 //4 adetten fazla link ekleyememeli
                 if (checkUserSocialMedia.Count >= 4)
                 {
@@ -59,11 +59,28 @@ namespace CvProject.BLL.Concrete
             }
         }
 
+        public IDataResult<bool> DeleteSocialMedia(int itemId)
+        {
+            try
+            {
+                var item = _userSocialMediaDal.Get(x => x.Id == itemId);
+
+                item.SocialMediaStatus = false;
+                _userSocialMediaDal.Update(item);
+
+                return new SuccessDataResult<bool>(true, "item_deleted", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
         public IDataResult<List<GetUserSocialMediaDto>> GetUserSocialMedia(int userId)
         {
             try
             {
-                var userSocialMedias = _userSocialMediaDal.GetAll(x => x.UserId == userId).ToList();
+                var userSocialMedias = _userSocialMediaDal.GetAll(x => x.UserId == userId && x.SocialMediaStatus == true).ToList();
 
                 if (userSocialMedias.Count == 0 || userSocialMedias == null)
                 {
@@ -77,7 +94,8 @@ namespace CvProject.BLL.Concrete
                     {
                         SocialMediaIcon = item.SocialMediaIcon,
                         SocialMediaLink = item.SocialMediaLink,
-                        SocialMediaName = item.SocialMediaName
+                        SocialMediaName = item.SocialMediaName,
+                        Id = item.Id,
                     });
                 }
 

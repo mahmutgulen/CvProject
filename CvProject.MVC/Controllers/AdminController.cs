@@ -72,7 +72,14 @@ namespace CvProject.MVC.Controllers
             dto.UserId = 1;
             dto.SocialMediaIcon = "fab fa-" + dto.SocialMediaName.ToLower();
             var result = _userSocialMediaService.AddSocialMedia(dto);
-            return View();
+            return RedirectToAction("AdminSocialMedia", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult DeleteSocialMedia(int id)
+        {
+            var result = _userSocialMediaService.DeleteSocialMedia(id);
+            return RedirectToAction("AdminSocialMedia","Admin");
         }
 
     }
