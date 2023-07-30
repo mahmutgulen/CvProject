@@ -1,6 +1,7 @@
 ﻿using CvProject.BLL.Abstract;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using CvProject.ENTITY.Dtos.UserDtos;
+using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.MVC.Controllers
@@ -55,8 +56,24 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminSocialMedia()
         {
-            var result=_userSocialMediaService.GetUserSocialMedia(1).Data;
+            var result = _userSocialMediaService.GetUserSocialMedia(1).Data;
             return View(result);
         }
+
+        [HttpGet]
+        public IActionResult AddSocialMedia()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddSocialMedia(AddSocialMediaDto dto)
+        {
+            dto.UserId = 1;
+            dto.SocialMediaIcon = "fab fa-" + dto.SocialMediaName.ToLower();
+            var result = _userSocialMediaService.AddSocialMedia(dto);
+            return View();
+        }
+
     }
 }

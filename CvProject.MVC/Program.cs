@@ -20,7 +20,7 @@ app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "Default",
-    pattern: "{controller=Cv}/{action=Index}");
+    pattern: "{controller=Admin}/{action=Index}");
 
 
 app.Run();

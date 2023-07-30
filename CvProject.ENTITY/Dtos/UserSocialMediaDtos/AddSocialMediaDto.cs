@@ -10,8 +10,8 @@ namespace CvProject.ENTITY.Dtos.UserSocialMediaDtos
     public class AddSocialMediaDto : IDto
     {
         public int UserId { get; set; }
-        public string SocialMediaName { get; set; }
-        public string SocialMediaIcon { get; set; }
-        public string SocialMediaLink { get; set; }
+        public string? SocialMediaName { get; set; }
+        public string? SocialMediaIcon { get; set; }
+        public string? SocialMediaLink { get; set; }
     }
 }
