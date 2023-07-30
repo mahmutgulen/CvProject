@@ -2,6 +2,7 @@
 using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
 
 namespace CvProject.BLL.Concrete
@@ -13,6 +14,53 @@ namespace CvProject.BLL.Concrete
         public UserReferenceManager(IUserReferenceDal userReferenceDal)
         {
             _userReferenceDal = userReferenceDal;
+        }
+
+        public IDataResult<bool> AddReference(AddUserReferenceDto dto)
+        {
+            try
+            {
+                var check = _userReferenceDal.Get(x => x.ReferenceMail == dto.ReferenceMail);
+
+                if (check != null)
+                {
+                    return new ErrorDataResult<bool>(false, "reference_already_exists", Messages.reference_already_exists);
+                }
+
+                var newReference = new UserReference
+                {
+                    ReferenceCompany = dto.ReferenceCompany,
+                    ReferenceMail = dto.ReferenceMail,
+                    ReferenceName = dto.ReferenceName,
+                    ReferencePhoneNumber = dto.ReferencePhoneNumber,
+                    ReferenceStatus = true,
+                    ReferenceSurname = dto.ReferenceSurname,
+                    UserId = dto.UserId
+                };
+                _userReferenceDal.Add(newReference);
+
+                return new SuccessDataResult<bool>(true, "referene_added", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
+        public IDataResult<bool> DeleteReference(int id)
+        {
+            try
+            {
+                var item = _userReferenceDal.Get(x => x.Id == id);
+
+                _userReferenceDal.Delete(item);
+
+                return new SuccessDataResult<bool>(true, "deleted_reference", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
 
         public IDataResult<List<GetUserReferenceDto>> GetUserReference(int userId)

@@ -11,5 +11,8 @@ namespace CvProject.BLL.Abstract
     public interface IUserReferenceService
     {
         IDataResult<List<GetUserReferenceDto>> GetUserReference(int userId);
+
+        IDataResult<bool> AddReference(AddUserReferenceDto dto);
+        IDataResult<bool> DeleteReference(int id);
     }
 }
