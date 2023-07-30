@@ -12,6 +12,7 @@ using CvProject.ENTITY.Dtos.UserEducationDtos;
 using CvProject.ENTITY.Dtos.UserCertificateDtos;
 using System.Transactions;
 using CvProject.ENTITY.Dtos.UserLanguageDtos;
+using CvProject.ENTITY.Dtos.UserInterestDtos;
 
 namespace CvProject.MVC.Controllers
 {
@@ -26,8 +27,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserEducationService _educationService;
         private readonly IUserCertificateService _certificateService;
         private readonly IUserLanguageService _languageService;
+        private readonly IUserInterestService _interestService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -38,6 +40,7 @@ namespace CvProject.MVC.Controllers
             _educationService = educationService;
             _certificateService = certificateService;
             _languageService = languageService;
+            _interestService = interestService;
         }
 
         public IActionResult Index()
@@ -314,6 +317,30 @@ namespace CvProject.MVC.Controllers
             var result = _languageService.AddUserLanguage(dto);
             return RedirectToAction("AdminLanguage", "Admin");
         }
+
+        [HttpGet]
+        public IActionResult AdminInterest()
+        {
+            var result = _interestService.GetUserInterest(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteInterest(int id)
+        {
+            var result = _interestService.DeleteInterest(id);
+            return RedirectToAction("AdminInterest", "Admin");
+        }
+        [HttpPost]
+        public IActionResult AdminInterest(AddUserInterestDto dto)//addInterest
+        {
+            dto.UserId = 1;
+            var result = _interestService.AddInterest(dto);
+            return RedirectToAction("AdminInterest", "Admin");
+        }
+
+
+
     }
 }
 

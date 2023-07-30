@@ -2,6 +2,8 @@
 using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.DAL.Concrete;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserInterestDtos;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,42 @@ namespace CvProject.BLL.Concrete
             _userInterestDal = userInterestDal;
         }
 
+        public IDataResult<bool> AddInterest(AddUserInterestDto dto)
+        {
+            try
+            {
+                var newInterest = new UserInterest
+                {
+                    InterestName = dto.InterestName,
+                    InterestStatus = true,
+                    UserId = dto.UserId,
+                };
+                _userInterestDal.Add(newInterest);
+
+                return new SuccessDataResult<bool>(true, "interestadded", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
+        public IDataResult<bool> DeleteInterest(int id)
+        {
+            try
+            {
+                var item = _userInterestDal.Get(x => x.Id == id);
+
+                _userInterestDal.Delete(item);
+
+                return new SuccessDataResult<bool>(true, "item_deleted", Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
         public IDataResult<List<GetUserInterestDto>> GetUserInterest(int userId)
         {
             try
@@ -35,7 +73,8 @@ namespace CvProject.BLL.Concrete
                 {
                     list.Add(new GetUserInterestDto
                     {
-                        InterestName = item.InterestName
+                        InterestName = item.InterestName,
+                        Id = item.Id,
                     });
                 }
 

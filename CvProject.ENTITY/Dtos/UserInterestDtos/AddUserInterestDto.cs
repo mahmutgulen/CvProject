@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserInterestDtos
 {
-    public class GetUserInterestDto : IDto
+    public class AddUserInterestDto : IDto
     {
+        public int UserId { get; set; }
         public string InterestName { get; set; }
-        public int Id { get; set; }
     }
 }
