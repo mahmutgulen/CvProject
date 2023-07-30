@@ -1,7 +1,7 @@
-﻿@using CvProject.ENTITY.Dtos.UserEducationDtos
-@model List<GetUserEducationDto>
+﻿@using CvProject.ENTITY.Dtos.UserCertificateDtos
+@model List<GetUserCertificateDto>
 @{
-    ViewData["Title"] = "AdminEducation";
+    ViewData["Title"] = "AdminCertificate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -11,7 +11,7 @@
             <div class="col-lg-6">
                 <div class="section-title ml-3">
                     <br />
-                    <h2>Education</h2>
+                    <h2>Certificate</h2>
                 </div>
             </div>
         </div>
@@ -24,25 +24,25 @@
 
                             <hr>
                             <div class="icon">
-                                <i class="fa fa-graduation-cap"></i>
+                                <i class="fa fa-certificate"></i>
                             </div>
-                            <span class="time">@item.EducationStartDate.Year - @item.EducationEndDate.Year</span>
+                            <span class="time">@item.CertificateDate.Year</span>
                             <br>
-                            <span class="time">@item.EducationCity, @item.EducationCountry</span>
-                            <h5>@item.EducationName</h5>
-                            <p>@item.EducationBranch</p>
+                            <span class="time">@item.CertificateCity, @item.CertificateCountry</span>
+                            <h5>@item.CertificateName</h5>
+                            <p>@item.CertificateProvider</p>
                         </li>
-                        <a href="/Admin/DeleteEducation/@item.Id/" class="btn btn-danger">
+                        <a href="/Admin/DeleteCertificate/@item.Id/" class="btn btn-danger">
                             <i class="fa fa-trash"></i>
                         </a>
-                        <a href="/Admin/UpdateEducation/@item.Id/" class="btn btn-secondary">
+                        <a href="/Admin/UpdateCertificate/@item.Id/" class="btn btn-secondary">
                             <i class="fa fa-edit"></i>
                         </a>
                     }
                 </ul>
                 <br />
 
-                <a href="/Admin/AddEducation" class="btn btn-primary">Add Education</a>
+                <a href="/Admin/AddCertificate" class="btn btn-primary">Add Certificate</a>
                 <br />
                 <br />
 

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "AddCertificate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h3>Add Certificate</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Certificate Name</label>
+            <input type="text" class="form-control" name="CertificateName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Provider</label>
+            <input type="text" class="form-control" name="CertificateProvider">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4"> Certificate Country</label>
+            <input type="text" class="form-control" name="CertificateCountry">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Certificate City</label>
+            <input type="text" class="form-control" name="CertificateCity">
+        </div>
+
+       
+        <div class="form-group">
+            <label for="inputEmail4">Certificate Date</label>
+            <input type="date" class="form-control" name="CertificateDate">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Certificate</button>
+    </form>
+    <br />
+    <a href="/Admin/AdminCertificate" class="btn btn-primary">Back</a>
+</div>
+

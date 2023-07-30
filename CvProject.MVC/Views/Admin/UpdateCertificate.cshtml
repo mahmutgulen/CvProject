@@ -1,0 +1,50 @@
+﻿@using CvProject.ENTITY.Dtos.UserCertificateDtos
+@model GetUserCertificateDto
+@{
+    ViewData["Title"] = "UpdateCertificate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h3>Update Certificate</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Certificate Name</label>
+            <input type="text" class="form-control" name="CertificateName" value="@Model.CertificateName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Provider</label>
+            <input type="text" class="form-control" name="CertificateProvider" value="@Model.CertificateProvider">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4"> Certificate Country</label>
+            <input type="text" class="form-control" name="CertificateCountry" value="@Model.CertificateCountry">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Certificate City</label>
+            <input type="text" class="form-control" name="CertificateCity" value="@Model.CertificateCity">
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputEmail4">Certificate Date</label>
+            <input type="date" class="form-control" name="CertificateDate" value="@Model.CertificateDate">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Certificate</button>
+    </form>
+    <br />
+    <a href="/Admin/AdminCertificate" class="btn btn-primary">Back</a>
+</div>
+

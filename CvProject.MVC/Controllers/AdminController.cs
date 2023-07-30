@@ -9,6 +9,8 @@ using System.Diagnostics.Metrics;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
 using CvProject.ENTITY.Dtos.UserSkillDtos;
 using CvProject.ENTITY.Dtos.UserEducationDtos;
+using CvProject.ENTITY.Dtos.UserCertificateDtos;
+using System.Transactions;
 
 namespace CvProject.MVC.Controllers
 {
@@ -21,8 +23,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserReferenceService _userReferenceService;
         private readonly IUserSkillService _skillService;
         private readonly IUserEducationService _educationService;
+        private readonly IUserCertificateService _certificateService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -31,6 +34,7 @@ namespace CvProject.MVC.Controllers
             _userReferenceService = userReferenceService;
             _skillService = skillService;
             _educationService = educationService;
+            _certificateService = certificateService;
         }
 
         public IActionResult Index()
@@ -236,6 +240,50 @@ namespace CvProject.MVC.Controllers
             var result = _educationService.UpdateEducation(dto);
             return RedirectToAction("AdminEducation", "Admin");
         }
+
+        [HttpGet]
+        public IActionResult AdminCertificate()
+        {
+            var result = _certificateService.GetUserCertificate(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteCertificate(int id)
+        {
+            var result = _certificateService.DeleteUserCertificate(id);
+            return RedirectToAction("AdminCertificate", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateCertificate(int id)
+        {
+            var result = _certificateService.GetByIdUserCertificate(id).Data;
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCertificate(UpdateUserCertifiacateDto dto)
+        {
+            var result = _certificateService.UpdateCertificate(dto);
+            return RedirectToAction("AdminCertificate", "Admin");
+        }
+
+
+        [HttpGet]
+        public IActionResult AddCertificate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddCertificate(AddUserCertificateDto dto)
+        {
+            dto.UserId = 1;
+            var result = _certificateService.AddCertificate(dto);
+            return RedirectToAction("AdminCertificate", "Admin");
+        }
+
     }
 }
 
