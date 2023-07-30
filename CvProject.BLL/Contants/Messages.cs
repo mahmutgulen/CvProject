@@ -38,6 +38,9 @@ namespace CvProject.BLL.Contants
         #region Skill
         public static string skill_already_exists = "skill_already_exists";
         #endregion
+        #region Language
+        public static string language_already_exits = "language_already_exits";
+        #endregion
 
 
     }

@@ -1,0 +1,70 @@
+﻿@using CvProject.ENTITY.Dtos.UserLanguageDtos
+@model List<GetUserLanguageDto>
+@{
+    ViewData["Title"] = "AdminLanguage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row flex-lg-nowrap">
+
+        <div class="col">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Languages</h5>
+            </div>
+
+            <div class="row flex-lg-nowrap">
+                <div class="col mb-3">
+                    <div class="e-panel card">
+                        <div class="card-body">
+                            <div class="e-table">
+                                <div class="table-responsive table-lg mt-3">
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+
+                                                <th>Name</th>
+                                                <th class="max-width">Level</th>
+                                                <th>Actions</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model)
+                                            {
+
+                                                <tr>
+
+                                                    <td>@item.LanguageName</td>
+
+                                                    <td><span>@item.LanguageLevel</span></td>
+
+
+
+                                                    <td>
+                                                        <div class="btn-group align-top">
+                                                            <a href="/Admin/DeleteLanguage/@item.Id" class="btn btn-secondary"><i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <a href="/Admin/AddLanguage" class="btn btn-primary">Add Language</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

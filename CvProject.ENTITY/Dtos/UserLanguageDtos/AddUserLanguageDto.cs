@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CvProject.ENTITY.Dtos.UserLanguageDtos
 {
-    public class GetUserLanguageDto : IDto
+    public class AddUserLanguageDto : IDto
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string LanguageName { get; set; }
         public string LanguageLevel { get; set; }
     }

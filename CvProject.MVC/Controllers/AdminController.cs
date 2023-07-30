@@ -11,6 +11,7 @@ using CvProject.ENTITY.Dtos.UserSkillDtos;
 using CvProject.ENTITY.Dtos.UserEducationDtos;
 using CvProject.ENTITY.Dtos.UserCertificateDtos;
 using System.Transactions;
+using CvProject.ENTITY.Dtos.UserLanguageDtos;
 
 namespace CvProject.MVC.Controllers
 {
@@ -24,8 +25,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserSkillService _skillService;
         private readonly IUserEducationService _educationService;
         private readonly IUserCertificateService _certificateService;
+        private readonly IUserLanguageService _languageService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -35,6 +37,7 @@ namespace CvProject.MVC.Controllers
             _skillService = skillService;
             _educationService = educationService;
             _certificateService = certificateService;
+            _languageService = languageService;
         }
 
         public IActionResult Index()
@@ -284,6 +287,33 @@ namespace CvProject.MVC.Controllers
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
+        [HttpGet]
+        public IActionResult AdminLanguage()
+        {
+            var result = _languageService.GetUserLanguage(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteLanguage(int id)
+        {
+            var result = _languageService.DeleteUserLanguage(id);
+            return RedirectToAction("AdminLanguage", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AddLanguage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddLanguage(AddUserLanguageDto dto)
+        {
+            dto.UserId = 1;
+            var result = _languageService.AddUserLanguage(dto);
+            return RedirectToAction("AdminLanguage", "Admin");
+        }
     }
 }
 
