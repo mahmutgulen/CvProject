@@ -12,7 +12,16 @@
                     <div class="resume-timeline-item-header mb-2">
                         <div class="d-flex flex-column flex-md-row">
                             <h3 class="resume-position-title font-weight-bold mb-1">@x.CompanyName</h3>
-                            <div class="resume-company-name ms-auto">@x.ExperienceStartDate - @x.ExperienceEndDate</div>
+
+
+
+
+                            <div class="resume-company-name ms-auto">
+                                @x.ExperienceStartDate.Day/@x.ExperienceStartDate.Month/@x.ExperienceStartDate.Year - @x.ExperienceEndDate.Day/@x.ExperienceEndDate.Month/@x.ExperienceEndDate.Year
+                            </div>
+
+
+
                         </div>
                         <h4 class="resume-position-title font-weight-regular">@x.Position</h4>
                     </div>

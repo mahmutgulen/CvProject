@@ -1,8 +1,11 @@
 ﻿using CvProject.BLL.Abstract;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using CvProject.ENTITY.Dtos.UserDtos;
+using CvProject.ENTITY.Dtos.UserExperienceDtos;
 using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Diagnostics.Metrics;
 
 namespace CvProject.MVC.Controllers
 {
@@ -98,6 +101,34 @@ namespace CvProject.MVC.Controllers
             return RedirectToAction("AdminExperience", "Admin");
         }
 
+        [HttpGet]
+        public IActionResult AddExperience()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddExperience(AddExperienceDto dto)
+        {
+            dto.UserId = 1;
+            var result = _experienceService.AddExperiece(dto);
+            return RedirectToAction("AdminExperience", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateExperience(int id)
+        {
+            var result = _experienceService.GetByIdExperience(id).Data;
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateExperience(UpdateExperienceDto dto)
+        {
+            var result = _experienceService.UpdateExperiece(dto);
+            return RedirectToAction("AdminExperience", "Admin");
+        }
 
     }
 }
+
