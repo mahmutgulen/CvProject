@@ -9,6 +9,7 @@ namespace CvProject.ENTITY.Dtos.UserReferenceDtos
 {
     public class GetUserReferenceDto : IDto
     {
+        public int Id { get; set; }
         public string ReferenceCompany { get; set; }
         public string ReferenceName { get; set; }
         public string ReferenceSurname { get; set; }

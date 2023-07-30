@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "AddReference";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-body">
+
+    <form method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h3>Add Reference</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Company Name</label>
+            <input type="text" class="form-control" name="ReferenceCompany">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4"> Name</label>
+            <input type="text" class="form-control" name="ReferenceName">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Surname</label>
+            <input type="text" class="form-control" name="ReferenceSurname">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Phone Number</label>
+            <input type="text" class="form-control" name="ReferencePhoneNumber">
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail4">Mail</label>
+            <input type="text" class="form-control" name="ReferenceMail">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Reference</button>
+    </form>
+    <br />
+    <a href="/Admin/AdminReference" class="btn btn-primary">Back</a>
+</div>

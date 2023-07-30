@@ -84,7 +84,8 @@ namespace CvProject.BLL.Concrete
                         ReferenceMail = item.ReferenceMail,
                         ReferenceName = item.ReferenceName,
                         ReferencePhoneNumber = item.ReferencePhoneNumber,
-                        ReferenceSurname = item.ReferenceSurname
+                        Id = item.Id,
+                        ReferenceSurname = item.ReferenceSurname,
                     });
                 }
                 return new SuccessDataResult<List<GetUserReferenceDto>>(list, "success", Messages.success);

@@ -6,6 +6,7 @@ using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using Microsoft.AspNetCore.Mvc;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Diagnostics.Metrics;
+using CvProject.ENTITY.Dtos.UserReferenceDtos;
 
 namespace CvProject.MVC.Controllers
 {
@@ -15,13 +16,15 @@ namespace CvProject.MVC.Controllers
         private readonly IAuthService _authService;
         private readonly IUserSocialMediaService _userSocialMediaService;
         private readonly IUserExperienceService _experienceService;
+        private readonly IUserReferenceService _userReferenceService;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
             _userSocialMediaService = userSocialMediaService;
             _experienceService = experienceService;
+            _userReferenceService = userReferenceService;
         }
 
         public IActionResult Index()
@@ -127,6 +130,33 @@ namespace CvProject.MVC.Controllers
         {
             var result = _experienceService.UpdateExperiece(dto);
             return RedirectToAction("AdminExperience", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AdminReference()
+        {
+            var result = _userReferenceService.GetUserReference(1).Data;
+            return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteReference(int id)
+        {
+            var result = _userReferenceService.DeleteReference(id);
+            return RedirectToAction("AdminReference", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult AddReference()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddReference(AddUserReferenceDto dto)
+        {
+            dto.UserId = 1;
+            var result = _userReferenceService.AddReference(dto);
+            return RedirectToAction("AdminReference", "Admin");
         }
 
     }
