@@ -3,22 +3,27 @@ using CvProject.BLL.Contants;
 using CvProject.CORE.Entities.Concrete;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CvProject.BLL.Concrete
 {
     public class AuthManager : IAuthService
     {
         private readonly IUserDal _userDal;
-
-        public AuthManager(IUserDal userDal)
+        private readonly IUserAddressDal _addressDal;
+        private readonly IUserDescriptionDal _userDescriptionDal;
+        public AuthManager(IUserDal userDal, IUserDescriptionDal userDescriptionDal, IUserAddressDal addressDal)
         {
             _userDal = userDal;
+            _userDescriptionDal = userDescriptionDal;
+            _addressDal = addressDal;
         }
 
         public IDataResult<bool> UserPasswordChange(UserPasswordChangeDto dto)
@@ -56,10 +61,10 @@ namespace CvProject.BLL.Concrete
         {
             try
             {
-                var existsCheck = _userDal.Get(x => x.UserMail == dto.UserMail || x.UserPhoneNumber == dto.UserPhoneNumber);
+                var existsCheck = _userDal.Get(x => x.UserName == dto.UserName);
                 if (existsCheck != null)
                 {
-                    return new ErrorDataResult<bool>(false, "mail_and_phonenumber_exists", Messages.mail_and_phonenumber_exists);
+                    return new ErrorDataResult<bool>(false, "user_name_already_exists", Messages.user_name_already_exists);
                 }
 
                 if (dto.UserPassword != dto.UserConfirmPassword)
@@ -67,18 +72,38 @@ namespace CvProject.BLL.Concrete
                     return new ErrorDataResult<bool>(false, "password_must_be_same", Messages.password_must_be_same);
                 }
 
-
-                var userAdd = new User
+                var newUser = new User
                 {
-                    UserMail = dto.UserMail,
-                    UserName = dto.UserName,
+                    UserSurname = "text here",
                     UserPassword = dto.UserPassword,
-                    UserPhoneNumber = dto.UserPhoneNumber,
-                    UserSurname = dto.UserSurname,
+                    UserFirstName = "text here",
                     UserStatus = true,
-                    UserImage = null
+                    UserImage = null,
+                    UserMail = "text here",
+                    UserName = dto.UserName,
+                    UserPhoneNumber = "text here"
                 };
-                _userDal.Add(userAdd);
+                _userDal.Add(newUser);
+
+                //Other Actions
+
+                var address = new UserAddress
+                {
+                    UserAddressStatus = true,
+                    UserCity = "text here",
+                    UserCountry = "text here",
+                    UserDistrict = "text here",
+                    UserId = newUser.Id,
+                };
+                _addressDal.Add(address);
+
+                var desc = new UserDescription
+                {
+                    UserDescriptionText = "text here",
+                    UserId = newUser.Id,
+                    UserStatus = true,
+                };
+                _userDescriptionDal.Add(desc);
 
                 return new SuccessDataResult<bool>(true, "registered_successfully", Messages.success);
             }

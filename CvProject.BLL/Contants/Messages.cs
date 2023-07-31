@@ -14,7 +14,7 @@ namespace CvProject.BLL.Contants
         public static string not_found = "not_found";
         #endregion
         #region Register
-        public static string mail_and_phonenumber_exists = "mail_and_phonenumber_exists";
+        public static string user_name_already_exists = "user_name_already_exists";
 
         public static string password_must_be_same = "password_must_be_same";
         #endregion

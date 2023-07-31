@@ -1,0 +1,120 @@
+﻿<html lang="en">
+<head>
+    <title>Login 01</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyTG9naW4lMjAwMSUyMiUyQyUyMnglMjIlM0EwLjM2MTAyMTgzMzcwMzY4MTklMkMlMjJ3JTIyJTNBMTkyMCUyQyUyMmglMjIlM0ExMDgwJTJDJTIyaiUyMiUzQTkzNyUyQyUyMmUlMjIlM0ExOTIwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGcHJldmlldy5jb2xvcmxpYi5jb20lMkZ0aGVtZSUyRmJvb3RzdHJhcCUyRmxvZ2luLWZvcm0tMTElMkYlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkYlMjIlMkMlMjJrJTIyJTNBMjQlMkMlMjJuJTIyJTNBJTIyVVRGLTglMjIlMkMlMjJvJTIyJTNBLTE4MCUyQyUyMnElMjIlM0ElNUIlNUQlN0Q="></script>
+    <script nonce="468a4026-1c26-4b38-992d-269994c7789d">(function (w, d) { !function (bt, bu, bv, bw) { bt[bv] = bt[bv] || {}; bt[bv].executed = []; bt.zaraz = { deferred: [], listeners: [] }; bt.zaraz.q = []; bt.zaraz._f = function (bx) { return function () { var by = Array.prototype.slice.call(arguments); bt.zaraz.q.push({ m: bx, a: by }) } }; for (const bz of ["track", "set", "debug"]) bt.zaraz[bz] = bt.zaraz._f(bz); bt.zaraz.init = () => { var bA = bu.getElementsByTagName(bw)[0], bB = bu.createElement(bw), bC = bu.getElementsByTagName("title")[0]; bC && (bt[bv].t = bu.getElementsByTagName("title")[0].text); bt[bv].x = Math.random(); bt[bv].w = bt.screen.width; bt[bv].h = bt.screen.height; bt[bv].j = bt.innerHeight; bt[bv].e = bt.innerWidth; bt[bv].l = bt.location.href; bt[bv].r = bu.referrer; bt[bv].k = bt.screen.colorDepth; bt[bv].n = bu.characterSet; bt[bv].o = (new Date).getTimezoneOffset(); if (bt.dataLayer) for (const bG of Object.entries(Object.entries(dataLayer).reduce(((bH, bI) => ({ ...bH[1], ...bI[1] })), {}))) zaraz.set(bG[0], bG[1], { scope: "page" }); bt[bv].q = []; for (; bt.zaraz.q.length;) { const bJ = bt.zaraz.q.shift(); bt[bv].q.push(bJ) } bB.defer = !0; for (const bK of [localStorage, sessionStorage]) Object.keys(bK || {}).filter((bM => bM.startsWith("_zaraz_"))).forEach((bL => { try { bt[bv]["z_" + bL.slice(7)] = JSON.parse(bK.getItem(bL)) } catch { bt[bv]["z_" + bL.slice(7)] = bK.getItem(bL) } })); bB.referrerPolicy = "origin"; bB.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(bt[bv]))); bA.parentNode.insertBefore(bB, bA) };["complete", "interactive"].includes(bu.readyState) ? zaraz.init() : bt.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);</script>
+    <style id="mttstyle">
+        #mttContainer {
+            left: 0 !important;
+            top: 0 !important;
+            position: fixed !important;
+            z-index: 100000200 !important;
+            width: 1000px !important;
+            margin-left: -500px !important;
+            background-color: #00000000 !important;
+            pointer-events: none !important;
+            display: inline-block !important;
+        }
+
+        .bootstrapiso .tooltip {
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0px !important;
+            visibility: visible !important;
+            pointer-events: none !important;
+        }
+
+        .bootstrapiso .tooltip-inner {
+            font-size: 14px !important;
+            max-width: 200px !important;
+            text-align: center !important;
+            backdrop-filter: blur(2px) !important;
+            background-color: #000000b8 !important;
+            color: #ffffffff !important;
+            pointer-events: none !important;
+        }
+
+        .bootstrapiso .arrow::before {
+            border-top-color: #000000b8 !important;
+        }
+
+        .bootstrapiso .arrow::after {
+            display: none !important;
+        }
+
+        .ocr_text_div {
+            position: absolute;
+            opacity: 0.7;
+            z-index: 100000;
+            pointer-events: auto;
+            font-size: 2.5em;
+            overflow: hidden;
+            border: 2px solid CornflowerBlue;
+            color: #00000000 !important;
+            background-color: #00000000 !important
+        }
+    </style>
+</head>
+<body>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <h2 class="heading-section"></h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                        </div>
+                        <h3 class="text-center mb-4">Register</h3>
+
+
+
+
+                        <form method="post" class="login-form">
+                            <div class="form-group">
+                                <input type="text" class="form-control rounded-left" placeholder="Username" required="" name="UserName">
+                            </div>
+                            <div class="form-group d-flex">
+                                <input type="password" class="form-control rounded-left" placeholder="Password" required="" name="UserPassword">
+                            </div>
+                            <div class="form-group d-flex">
+                                <input type="password" class="form-control rounded-left" placeholder="Confirm Password" required="" name="UserConfirmPassword">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Register</button>
+                            </div>
+                            <div class="form-group d-md-flex">
+                                <div class="w-100 text-md-center">
+                                    <a href="/Auth/Index"> <-- login</a>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon="{&quot;rayId&quot;:&quot;7ef1899048df50d0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2023.7.0&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
+
+
+    <div id="mttContainer" class="bootstrapiso notranslate" data-original-title="" title="" style="transform: translate(1378px, 103px);"></div>
+</body>
+</html>
