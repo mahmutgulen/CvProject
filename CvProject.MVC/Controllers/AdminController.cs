@@ -4,16 +4,15 @@ using CvProject.ENTITY.Dtos.UserDtos;
 using CvProject.ENTITY.Dtos.UserExperienceDtos;
 using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Diagnostics.Metrics;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
 using CvProject.ENTITY.Dtos.UserSkillDtos;
 using CvProject.ENTITY.Dtos.UserEducationDtos;
 using CvProject.ENTITY.Dtos.UserCertificateDtos;
-using System.Transactions;
 using CvProject.ENTITY.Dtos.UserLanguageDtos;
 using CvProject.ENTITY.Dtos.UserInterestDtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
+using CvProject.DAL.Abstract;
 
 namespace CvProject.MVC.Controllers
 {
@@ -30,8 +29,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserCertificateService _certificateService;
         private readonly IUserLanguageService _languageService;
         private readonly IUserInterestService _interestService;
+        private readonly IUserDal _userDal;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService, IUserDal userDal)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -43,6 +43,7 @@ namespace CvProject.MVC.Controllers
             _certificateService = certificateService;
             _languageService = languageService;
             _interestService = interestService;
+            _userDal = userDal;
         }
 
         public IActionResult Index()
@@ -66,7 +67,10 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminAccount()
         {
-            var result = _adminAccountService.GetAdminAccount(1).Data;
+            var userName = HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Name).Value;
+            var userId = _userDal.Get(x => x.UserName == userName).Id;
+
+            var result = _adminAccountService.GetAdminAccount(userId).Data;
             return View(result);
         }
 
