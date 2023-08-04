@@ -65,7 +65,7 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult Logout()
         {
-
+            HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Auth");
         }
     }
