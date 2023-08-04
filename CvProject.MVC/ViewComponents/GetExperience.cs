@@ -14,7 +14,9 @@ namespace CvProject.MVC.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var result = _userExperienceService.GetUserExperience(1).Data;
+            var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+
+            var result = _userExperienceService.GetUserExperience(userId).Data;
             return View(result);
         }
     }
