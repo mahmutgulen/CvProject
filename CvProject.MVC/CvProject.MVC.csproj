@@ -2251,4 +2251,8 @@
     <ProjectReference Include="..\CvProject.ENTITY\CvProject.ENTITY.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\UserImageFiles\" />
+  </ItemGroup>
+
 </Project>

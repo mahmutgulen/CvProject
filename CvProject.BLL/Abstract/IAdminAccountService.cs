@@ -12,6 +12,6 @@ namespace CvProject.BLL.Abstract
     {
         IDataResult<GetAdminAccountDto> GetAdminAccount(int userId);
 
-        IDataResult<bool> UpdateAdminAccount(GetAdminAccountDto dto);
+        IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto);
     }
 }

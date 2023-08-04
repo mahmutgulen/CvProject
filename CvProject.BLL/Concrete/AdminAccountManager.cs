@@ -1,17 +1,9 @@
-﻿using Azure.Identity;
-using CvProject.BLL.Abstract;
+﻿using CvProject.BLL.Abstract;
 using CvProject.BLL.Contants;
-using CvProject.CORE.Entities.Concrete;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CvProject.BLL.Concrete
 {
@@ -60,7 +52,7 @@ namespace CvProject.BLL.Concrete
             }
         }
 
-        public IDataResult<bool> UpdateAdminAccount(GetAdminAccountDto dto)
+        public IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto)
         {
             try
             {
@@ -76,10 +68,19 @@ namespace CvProject.BLL.Concrete
                 user.UserSurname = dto.UserSurname;
                 user.UserMail = dto.UserMail;
                 user.UserFirstName = dto.UserFirstName;
-                user.UserImage = dto.UserImage;
                 address.UserCity = dto.UserCity;
                 address.UserCountry = dto.UserCountry;
                 description.UserDescriptionText = dto.UserDescription;
+
+                if (dto.UserImage != null)
+                {
+                    var extension = Path.GetExtension(dto.UserImage.FileName);
+                    var newImageName = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UserImageFiles/", newImageName);
+                    var stream = new FileStream(location, FileMode.Create);
+                    dto.UserImage.CopyTo(stream);
+                    user.UserImage = newImageName;
+                }
 
                 _userAddressDal.Update(address);
                 _userDescriptionDal.Update(description);

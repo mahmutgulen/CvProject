@@ -78,9 +78,9 @@ namespace CvProject.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminAccount(GetAdminAccountDto dto)
+        public IActionResult AdminAccount(UpdateAdminAccountDto dto)
         {
-            dto.UserId = GetUserId(); ;
+            dto.UserId = GetUserId(); 
             var result = _adminAccountService.UpdateAdminAccount(dto);
             ViewBag.Message = result.MessageCode;
             return RedirectToAction("AdminAccount", "Admin");

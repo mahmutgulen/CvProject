@@ -8,7 +8,8 @@
 
 
 <div class="card-body">
-    <form method="post">
+
+    <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-8">
                 <div class="form-group">
@@ -25,11 +26,16 @@
             </div>
             <div class="col-md-4">
                 <div class="text-center">
-                    <img alt="Andrew Jones" src="https://bootdey.com/img/Content/avatar/avatar7.png" class="rounded-circle img-responsive mt-2" width="128" height="128">
+
+                    @if (Model.UserImage != null)
+                    {
+                        <img src="wwwroot/UserImageFiles/@Model.UserImage" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                    }
                     <div class="mt-2">
-                        <span class="btn btn-primary"><i class="fa fa-upload"></i></span>
+                        <input type="file" name="UserImage" class="form-control" />
                     </div>
-                    <small>For best results, use an image at least 128px by 128px in .jpg format</small>
+
+                    <small>For best results, use an image at png, jpg format.</small>
                 </div>
             </div>
         </div>
@@ -62,4 +68,6 @@
         </div>
         <button type="submit" class="btn btn-primary">Save changes</button>
     </form>
+
+
 </div>
