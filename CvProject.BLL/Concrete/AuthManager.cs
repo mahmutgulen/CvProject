@@ -5,6 +5,7 @@ using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.UserDtos;
+using CvProject.ENTITY.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,13 @@ namespace CvProject.BLL.Concrete
         private readonly IUserDal _userDal;
         private readonly IUserAddressDal _addressDal;
         private readonly IUserDescriptionDal _userDescriptionDal;
-        public AuthManager(IUserDal userDal, IUserDescriptionDal userDescriptionDal, IUserAddressDal addressDal)
+        private readonly IUserOperationClaimDal _userOperationClaimDal;
+        public AuthManager(IUserDal userDal, IUserDescriptionDal userDescriptionDal, IUserAddressDal addressDal, IUserOperationClaimDal userOperationClaimDal)
         {
             _userDal = userDal;
             _userDescriptionDal = userDescriptionDal;
             _addressDal = addressDal;
+            _userOperationClaimDal = userOperationClaimDal;
         }
 
         public IDataResult<bool> UserLogin(UserLoginDto dto)
@@ -117,6 +120,15 @@ namespace CvProject.BLL.Concrete
                     UserStatus = true,
                 };
                 _userDescriptionDal.Add(desc);
+
+                //system
+
+                var userClaim = new UserOperationClaim
+                {
+                    RoleId = (int)OperationClaimEnum.Member,
+                    UserId = newUser.Id,
+                };
+                _userOperationClaimDal.Add(userClaim);
 
                 return new SuccessDataResult<bool>(true, "registered_successfully", Messages.success);
             }
