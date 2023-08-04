@@ -8,6 +8,7 @@ using CvProject.ENTITY.Dtos.UserDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -24,6 +25,18 @@ namespace CvProject.BLL.Concrete
             _userDal = userDal;
             _userDescriptionDal = userDescriptionDal;
             _addressDal = addressDal;
+        }
+
+        public IDataResult<bool> UserLogin(UserLoginDto dto)
+        {
+            try
+            {
+                return new SuccessDataResult<bool>(true);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
 
         public IDataResult<bool> UserPasswordChange(UserPasswordChangeDto dto)

@@ -6,6 +6,7 @@ namespace CvProject.BLL.Abstract
     public interface IAuthService
     {
         IDataResult<bool> UserRegister(UserRegisterDto dto);
+        IDataResult<bool> UserLogin(UserLoginDto dto);
         IDataResult<bool> UserPasswordChange(UserPasswordChangeDto dto);
     }
 }
