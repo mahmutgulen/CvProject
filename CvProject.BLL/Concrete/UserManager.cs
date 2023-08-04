@@ -3,6 +3,7 @@ using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Dtos.UserDtos;
+using System.Globalization;
 
 namespace CvProject.BLL.Concrete
 {
@@ -26,13 +27,13 @@ namespace CvProject.BLL.Concrete
 
                 var dto = new GetUserDto
                 {
-                    UserFirstName = user.UserFirstName,
-                    UserSurname = user.UserSurname,
+                    UserFirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(user.UserFirstName),
+                    UserSurname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(user.UserSurname),
                     UserMail = user.UserMail,
                     UserPhoneNumber = user.UserPhoneNumber,
                     UserImage = user.UserImage,
-                    UserCountry = userAddress.UserCountry,
-                    UserCity = userAddress.UserCity
+                    UserCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(userAddress.UserCountry),
+                    UserCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(userAddress.UserCity)
                 };
 
                 return new SuccessDataResult<GetUserDto>(dto, "ok", Messages.success);
