@@ -17,6 +17,11 @@ namespace CvProject.MVC.ViewComponents
         {
             var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
             var image = _userDal.Get(x => x.Id == userId).UserImage;
+            if (image==null)
+            {
+                ViewBag.Image = null;
+                return View();
+            }
             ViewBag.Image = image;
             return View();
         }
