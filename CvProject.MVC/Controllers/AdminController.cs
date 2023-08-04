@@ -13,9 +13,11 @@ using CvProject.ENTITY.Dtos.UserCertificateDtos;
 using System.Transactions;
 using CvProject.ENTITY.Dtos.UserLanguageDtos;
 using CvProject.ENTITY.Dtos.UserInterestDtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CvProject.MVC.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IAdminAccountService _adminAccountService;

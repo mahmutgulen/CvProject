@@ -34,6 +34,18 @@ namespace CvProject.BLL.Concrete
         {
             try
             {
+                var user = _userDal.Get(x => x.UserName == dto.UserName);
+
+                if (user == null)
+                {
+                    return new ErrorDataResult<bool>(false, "not_found", Messages.not_found);
+                }
+
+                if (user.UserPassword != dto.UserPassword)
+                {
+                    return new ErrorDataResult<bool>(false, "password_is_wrong", Messages.password_is_wrong);
+                }
+
                 return new SuccessDataResult<bool>(true);
             }
             catch (Exception e)
