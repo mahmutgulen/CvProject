@@ -34,7 +34,10 @@ namespace CvProject.BLL.Concrete
                 var user = _userDal.Get(x => x.Id == userId);
                 var address = _userAddressDal.Get(x => x.UserId == userId);
                 var description = _userDescriptionDal.Get(x => x.UserId == userId);
-
+                if (user == null || address == null || description == null)
+                {
+                    return new ErrorDataResult<GetAdminAccountDto>(new GetAdminAccountDto(), "not_found", Messages.not_found);
+                }
                 var dto = new GetAdminAccountDto
                 {
                     UserCity = address.UserCity,
@@ -61,7 +64,10 @@ namespace CvProject.BLL.Concrete
             try
             {
                 var user = _userDal.Get(x => x.Id == dto.UserId);
-                
+                if (user == null)
+                {
+                    return new ErrorDataResult<bool>(false, "not_found", Messages.not_found);
+                }
                 var address = _userAddressDal.Get(x => x.UserId == dto.UserId);
                 var description = _userDescriptionDal.Get(x => x.UserId == dto.UserId);
                 user.UserName = user.UserName;

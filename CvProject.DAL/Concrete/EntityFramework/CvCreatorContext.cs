@@ -23,5 +23,7 @@ namespace CvProject.DAL.Concrete.EntityFramework
         public DbSet<UserReference> UserReferences { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<UserSocialMedia> UserSocialMedias { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
     }
 }

@@ -12,6 +12,19 @@ namespace CvProject.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "OperationClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OperationClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserAddresses",
                 columns: table => new
                 {
@@ -135,6 +148,20 @@ namespace CvProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserOperationClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserOperationClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserReferences",
                 columns: table => new
                 {
@@ -211,6 +238,9 @@ namespace CvProject.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "OperationClaims");
+
+            migrationBuilder.DropTable(
                 name: "UserAddresses");
 
             migrationBuilder.DropTable(
@@ -230,6 +260,9 @@ namespace CvProject.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserLanguages");
+
+            migrationBuilder.DropTable(
+                name: "UserOperationClaims");
 
             migrationBuilder.DropTable(
                 name: "UserReferences");
