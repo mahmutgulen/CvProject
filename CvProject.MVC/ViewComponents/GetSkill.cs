@@ -14,7 +14,9 @@ namespace CvProject.MVC.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var result = _userSkillService.GetUserSkill(1).Data;
+            var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+
+            var result = _userSkillService.GetUserSkill(userId).Data;
             return View(result);
         }
     }

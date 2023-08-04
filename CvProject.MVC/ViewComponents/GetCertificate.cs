@@ -1,5 +1,6 @@
 ﻿using CvProject.BLL.Abstract;
 using CvProject.DAL.Abstract;
+using CvProject.DAL.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CvProject.MVC.ViewComponents
@@ -13,9 +14,12 @@ namespace CvProject.MVC.ViewComponents
             _userCertificateService = userCertificateService;
         }
 
+
         public IViewComponentResult Invoke()
         {
-            var result = _userCertificateService.GetUserCertificate(1).Data;
+            var userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+
+            var result = _userCertificateService.GetUserCertificate(userId).Data;
             return View(result);
         }
     }

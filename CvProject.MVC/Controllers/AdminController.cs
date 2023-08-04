@@ -4,16 +4,15 @@ using CvProject.ENTITY.Dtos.UserDtos;
 using CvProject.ENTITY.Dtos.UserExperienceDtos;
 using CvProject.ENTITY.Dtos.UserSocialMediaDtos;
 using Microsoft.AspNetCore.Mvc;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Diagnostics.Metrics;
 using CvProject.ENTITY.Dtos.UserReferenceDtos;
 using CvProject.ENTITY.Dtos.UserSkillDtos;
 using CvProject.ENTITY.Dtos.UserEducationDtos;
 using CvProject.ENTITY.Dtos.UserCertificateDtos;
-using System.Transactions;
 using CvProject.ENTITY.Dtos.UserLanguageDtos;
 using CvProject.ENTITY.Dtos.UserInterestDtos;
 using Microsoft.AspNetCore.Authorization;
+using CvProject.DAL.Abstract;
+using CvProject.CORE.Entities.Concrete;
 
 namespace CvProject.MVC.Controllers
 {
@@ -30,8 +29,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserCertificateService _certificateService;
         private readonly IUserLanguageService _languageService;
         private readonly IUserInterestService _interestService;
+        private readonly IUserDal _userDal;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService, IUserDal userDal)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -43,6 +43,12 @@ namespace CvProject.MVC.Controllers
             _certificateService = certificateService;
             _languageService = languageService;
             _interestService = interestService;
+            _userDal = userDal;
+        }
+        public int GetUserId()
+        {
+            var userId = HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier).Value;
+            return Convert.ToInt32(userId);
         }
 
         public IActionResult Index()
@@ -58,7 +64,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AdminPassword(UserPasswordChangeDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _authService.UserPasswordChange(dto);
             return RedirectToAction("AdminAccount", "Admin");
         }
@@ -66,14 +72,15 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminAccount()
         {
-            var result = _adminAccountService.GetAdminAccount(1).Data;
+            var userId = GetUserId();
+            var result = _adminAccountService.GetAdminAccount(userId).Data;
             return View(result);
         }
 
         [HttpPost]
         public IActionResult AdminAccount(GetAdminAccountDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId(); ;
             var result = _adminAccountService.UpdateAdminAccount(dto);
             ViewBag.Message = result.MessageCode;
             return RedirectToAction("AdminAccount", "Admin");
@@ -82,7 +89,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminSocialMedia()
         {
-            var result = _userSocialMediaService.GetUserSocialMedia(1).Data;
+            var userId = GetUserId();
+            var result = _userSocialMediaService.GetUserSocialMedia(userId).Data;
             return View(result);
         }
 
@@ -95,7 +103,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddSocialMedia(AddSocialMediaDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             dto.SocialMediaIcon = "fab fa-" + dto.SocialMediaName.ToLower();
             var result = _userSocialMediaService.AddSocialMedia(dto);
             return RedirectToAction("AdminSocialMedia", "Admin");
@@ -111,7 +119,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminExperience()
         {
-            var result = _experienceService.GetUserExperience(1).Data;
+            var userId = GetUserId();
+            var result = _experienceService.GetUserExperience(userId).Data;
             return View(result);
         }
 
@@ -131,7 +140,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddExperience(AddExperienceDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId(); ;
             var result = _experienceService.AddExperiece(dto);
             return RedirectToAction("AdminExperience", "Admin");
         }
@@ -153,7 +162,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminReference()
         {
-            var result = _userReferenceService.GetUserReference(1).Data;
+            var userId = GetUserId();
+            var result = _userReferenceService.GetUserReference(userId).Data;
             return View(result);
         }
 
@@ -173,7 +183,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddReference(AddUserReferenceDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _userReferenceService.AddReference(dto);
             return RedirectToAction("AdminReference", "Admin");
         }
@@ -181,7 +191,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminSkill()
         {
-            var result = _skillService.GetUserSkill(1).Data;
+            var userId = GetUserId();
+            var result = _skillService.GetUserSkill(userId).Data;
             return View(result);
         }
 
@@ -201,7 +212,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddSkill(AddUserSkillDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _skillService.AddSkill(dto);
             return RedirectToAction("AdminSkill", "Admin");
         }
@@ -209,7 +220,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminEducation()
         {
-            var result = _educationService.GetUserEducation(1).Data;
+            var userId = GetUserId();
+            var result = _educationService.GetUserEducation(userId).Data;
             return View(result);
         }
 
@@ -229,7 +241,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddEducation(AddUserEducationDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _educationService.AddEducation(dto);
             return RedirectToAction("AdminEducation", "Admin");
         }
@@ -245,6 +257,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult UpdateEducation(UpdateUserEducationDto dto)
         {
+
             var result = _educationService.UpdateEducation(dto);
             return RedirectToAction("AdminEducation", "Admin");
         }
@@ -252,7 +265,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminCertificate()
         {
-            var result = _certificateService.GetUserCertificate(1).Data;
+            var userId = GetUserId();
+            var result = _certificateService.GetUserCertificate(userId).Data;
             return View(result);
         }
 
@@ -287,7 +301,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddCertificate(AddUserCertificateDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _certificateService.AddCertificate(dto);
             return RedirectToAction("AdminCertificate", "Admin");
         }
@@ -295,7 +309,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminLanguage()
         {
-            var result = _languageService.GetUserLanguage(1).Data;
+            var userId = GetUserId();
+            var result = _languageService.GetUserLanguage(userId).Data;
             return View(result);
         }
 
@@ -315,7 +330,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AddLanguage(AddUserLanguageDto dto)
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _languageService.AddUserLanguage(dto);
             return RedirectToAction("AdminLanguage", "Admin");
         }
@@ -323,7 +338,8 @@ namespace CvProject.MVC.Controllers
         [HttpGet]
         public IActionResult AdminInterest()
         {
-            var result = _interestService.GetUserInterest(1).Data;
+            var userId = GetUserId();
+            var result = _interestService.GetUserInterest(userId).Data;
             return View(result);
         }
 
@@ -336,7 +352,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AdminInterest(AddUserInterestDto dto)//addInterest
         {
-            dto.UserId = 1;
+            dto.UserId = GetUserId();
             var result = _interestService.AddInterest(dto);
             return RedirectToAction("AdminInterest", "Admin");
         }

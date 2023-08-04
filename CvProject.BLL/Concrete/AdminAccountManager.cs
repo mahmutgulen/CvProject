@@ -7,6 +7,7 @@ using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -40,15 +41,15 @@ namespace CvProject.BLL.Concrete
                 }
                 var dto = new GetAdminAccountDto
                 {
-                    UserCity = address.UserCity,
-                    UserCountry = address.UserCountry,
+                    UserCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(address.UserCity),
+                    UserCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(address.UserCountry),
                     UserDescription = description.UserDescriptionText,
-                    UserFirstName = user.UserFirstName,
+                    UserFirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(user.UserFirstName),
                     UserImage = user.UserImage,
                     UserMail = user.UserMail,
                     UserName = user.UserName,
                     UserPhoneNumber = user.UserPhoneNumber,
-                    UserSurname = user.UserSurname
+                    UserSurname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(user.UserSurname)
                 };
 
                 return new SuccessDataResult<GetAdminAccountDto>(dto, "success", Messages.success);
