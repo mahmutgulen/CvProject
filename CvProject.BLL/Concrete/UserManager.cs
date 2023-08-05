@@ -23,7 +23,7 @@ namespace CvProject.BLL.Concrete
             try
             {
                 var user = _userDal.Get(x => x.Id == userId);
-                var userAddress = _userAddressDal.Get(x => x.Id == userId);
+                var userAddress = _userAddressDal.Get(x => x.UserId == userId);
 
                 var dto = new GetUserDto
                 {
