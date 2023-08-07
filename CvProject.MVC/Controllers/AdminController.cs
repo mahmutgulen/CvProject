@@ -359,20 +359,16 @@ namespace CvProject.MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreatePdf()
+        public async Task<FileStreamResult> CreatePdf()
         {
             var userId = GetUserId();
             var create = _adminAccountService.CreatePdf(userId);
 
-            string filePath = "~/wwwroot/UserPdfFiles/";
-            //create.Message = file name döndürdüm
-            string fileName = $"{create.Message}.png";
-
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            var path = $"wwwroot/UserPdfFiles/{create.Message}.pdf";
+            var stream = System.IO.File.OpenRead(path);
 
             var download = _adminAccountService.DownloadPdf(userId);
-
-            return File(fileBytes, "application/force-download", fileName);
+            return new FileStreamResult(stream, "application/pdf");
         }
     }
 }
