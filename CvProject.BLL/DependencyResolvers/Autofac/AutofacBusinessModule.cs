@@ -53,6 +53,8 @@ namespace CvProject.BLL.DependencyResolvers.Autofac
             builder.RegisterType<AdminAccountManager>().As<IAdminAccountService>();
 
             builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>();
+
+            builder.RegisterType<EfUserPdfDal>().As<IUserPdfDal>();
         }
     }
 }

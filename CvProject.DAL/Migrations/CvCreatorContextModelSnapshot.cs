@@ -329,6 +329,29 @@ namespace CvProject.DAL.Migrations
                     b.ToTable("UserLanguages");
                 });
 
+            modelBuilder.Entity("CvProject.ENTITY.Concrete.UserPdf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserPdfId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("UserPdfStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserPdfs");
+                });
+
             modelBuilder.Entity("CvProject.ENTITY.Concrete.UserReference", b =>
                 {
                     b.Property<int>("Id")

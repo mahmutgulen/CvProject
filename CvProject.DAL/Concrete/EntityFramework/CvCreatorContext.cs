@@ -9,7 +9,7 @@ namespace CvProject.DAL.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=DESKTOP-PH12VSS;Database=CvCreator;User Id=DESKTOP-PH12VSS\mako; integrated security=true; TrustServerCertificate=True;");
-            
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -25,5 +25,6 @@ namespace CvProject.DAL.Concrete.EntityFramework
         public DbSet<UserSocialMedia> UserSocialMedias { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserPdf> UserPdfs { get; set; }
     }
 }

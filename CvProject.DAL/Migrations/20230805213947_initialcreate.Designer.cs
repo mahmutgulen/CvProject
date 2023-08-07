@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CvProject.DAL.Migrations
 {
     [DbContext(typeof(CvCreatorContext))]
-    [Migration("20230804182649_first_migration")]
-    partial class first_migration
+    [Migration("20230805213947_initialcreate")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -330,6 +330,29 @@ namespace CvProject.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserLanguages");
+                });
+
+            modelBuilder.Entity("CvProject.ENTITY.Concrete.UserPdf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserPdfId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("UserPdfStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserPdfs");
                 });
 
             modelBuilder.Entity("CvProject.ENTITY.Concrete.UserReference", b =>

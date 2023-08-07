@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CvProject.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class first_migration : Migration
+    public partial class initialcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -162,6 +162,21 @@ namespace CvProject.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserPdfs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    UserPdfId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPdfStatus = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserPdfs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserReferences",
                 columns: table => new
                 {
@@ -263,6 +278,9 @@ namespace CvProject.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
+
+            migrationBuilder.DropTable(
+                name: "UserPdfs");
 
             migrationBuilder.DropTable(
                 name: "UserReferences");

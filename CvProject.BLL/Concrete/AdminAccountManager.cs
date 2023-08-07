@@ -2,6 +2,7 @@
 using CvProject.BLL.Contants;
 using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
+using CvProject.ENTITY.Concrete;
 using CvProject.ENTITY.Dtos.AdminAccountDtos;
 using System.Globalization;
 
@@ -12,12 +13,60 @@ namespace CvProject.BLL.Concrete
         private readonly IUserDal _userDal;
         private readonly IUserDescriptionDal _userDescriptionDal;
         private readonly IUserAddressDal _userAddressDal;
+        private readonly IUserPdfDal _userPdfDal;
 
-        public AdminAccountManager(IUserDal userDal, IUserDescriptionDal userDescriptionDal, IUserAddressDal userAddressDal)
+        public AdminAccountManager(IUserDal userDal, IUserDescriptionDal userDescriptionDal, IUserAddressDal userAddressDal, IUserPdfDal userPdfDal)
         {
             _userDal = userDal;
             _userDescriptionDal = userDescriptionDal;
             _userAddressDal = userAddressDal;
+            _userPdfDal = userPdfDal;
+        }
+
+        public IDataResult<bool> CreatePdf(int userId)
+        {
+            try
+            {
+                var htmlstring = System.IO.File.ReadAllText("Views/Shared/_AdminLayout.cshtml");
+
+                var htmltoPdfConverter = new NReco.PdfGenerator.HtmlToPdfConverter();
+
+                var pdf = htmltoPdfConverter.GeneratePdf(htmlstring);
+                var pdfGuidString = Guid.NewGuid();
+                System.IO.File.WriteAllBytes($"wwwroot/UserPdfFiles/{pdfGuidString}.pdf", pdf);
+
+                var userPdf = new UserPdf
+                {
+                    UserId = userId,
+                    UserPdfStatus = true,
+                    UserPdfId = pdfGuidString.ToString()
+                };
+                _userPdfDal.Add(userPdf);
+
+                return new SuccessDataResult<bool>(true, pdfGuidString.ToString(), Messages.success);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
+        }
+
+        public IDataResult<bool> DownloadPdf(int userId)
+        {
+            try
+            {
+                var userPdf = _userPdfDal.Get(x => x.UserId == userId && x.UserPdfStatus == true);
+
+                userPdf.UserPdfStatus = false;
+
+                _userPdfDal.Update(userPdf);
+
+                return new SuccessDataResult<bool>(true);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<bool>(false, e.Message, Messages.unk_err);
+            }
         }
 
         public IDataResult<GetAdminAccountDto> GetAdminAccount(int userId)

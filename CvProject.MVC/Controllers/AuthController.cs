@@ -59,7 +59,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult Register(UserRegisterDto dto)
         {
             var result = _authService.UserRegister(dto);
-            return RedirectToAction("Index", "Auth");
+            if (result.Data)
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+            return RedirectToAction("Register", "Auth");
         }
 
         [HttpGet]

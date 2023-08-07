@@ -12,7 +12,8 @@ using CvProject.ENTITY.Dtos.UserLanguageDtos;
 using CvProject.ENTITY.Dtos.UserInterestDtos;
 using Microsoft.AspNetCore.Authorization;
 using CvProject.DAL.Abstract;
-using CvProject.CORE.Entities.Concrete;
+using System.IO;
+using NuGet.Packaging.Signing;
 
 namespace CvProject.MVC.Controllers
 {
@@ -80,7 +81,7 @@ namespace CvProject.MVC.Controllers
         [HttpPost]
         public IActionResult AdminAccount(UpdateAdminAccountDto dto)
         {
-            dto.UserId = GetUserId(); 
+            dto.UserId = GetUserId();
             var result = _adminAccountService.UpdateAdminAccount(dto);
             ViewBag.Message = result.MessageCode;
             return RedirectToAction("AdminAccount", "Admin");
@@ -357,8 +358,22 @@ namespace CvProject.MVC.Controllers
             return RedirectToAction("AdminInterest", "Admin");
         }
 
+        [HttpGet]
+        public IActionResult CreatePdf()
+        {
+            var userId = GetUserId();
+            var create = _adminAccountService.CreatePdf(userId);
 
+            string filePath = "~/wwwroot/UserPdfFiles/";
+            //create.Message = file name döndürdüm
+            string fileName = $"{create.Message}.png";
 
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+
+            var download = _adminAccountService.DownloadPdf(userId);
+
+            return File(fileBytes, "application/force-download", fileName);
+        }
     }
 }
 

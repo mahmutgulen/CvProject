@@ -13,5 +13,8 @@ namespace CvProject.BLL.Abstract
         IDataResult<GetAdminAccountDto> GetAdminAccount(int userId);
 
         IDataResult<bool> UpdateAdminAccount(UpdateAdminAccountDto dto);
+
+        IDataResult<bool> CreatePdf(int userId);
+        IDataResult<bool> DownloadPdf(int userId);
     }
 }
