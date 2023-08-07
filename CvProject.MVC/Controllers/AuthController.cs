@@ -1,4 +1,7 @@
-﻿using CvProject.BLL.Abstract;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using CvProject.BLL.Abstract;
+using CvProject.BLL.Contants;
+using CvProject.CORE.Utilities.Result;
 using CvProject.DAL.Abstract;
 using CvProject.ENTITY.Dtos.UserDtos;
 using Microsoft.AspNetCore.Authentication;
@@ -12,11 +15,13 @@ namespace CvProject.MVC.Controllers
     {
         private readonly IAuthService _authService;
         private readonly IUserDal _userDal;
+        private readonly INotyfService _notyf;
 
-        public AuthController(IAuthService authService, IUserDal userDal)
+        public AuthController(IAuthService authService, IUserDal userDal, INotyfService notyf)
         {
             _authService = authService;
             _userDal = userDal;
+            _notyf = notyf;
         }
 
         [HttpGet]
@@ -32,8 +37,8 @@ namespace CvProject.MVC.Controllers
             if (result.Data)
             {
                 //userId
-                var userId = _userDal.Get(x => x.UserName == dto.UserName).Id;
-
+                var user = _userDal.Get(x => x.UserName == dto.UserName);
+                var userId = user.Id;
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,dto.UserName),
@@ -43,7 +48,11 @@ namespace CvProject.MVC.Controllers
                 var authProperties = new AuthenticationProperties();
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-
+                if (result.MessageCode == Messages.success)
+                {
+                    _notyf.Success($"Signed in by {user.UserFirstName}");
+                }
+                _notyf.Error(result.Message);
                 return RedirectToAction("Index", "Admin");
             }
             return RedirectToAction("Index", "Auth");
@@ -63,6 +72,11 @@ namespace CvProject.MVC.Controllers
             {
                 return RedirectToAction("Index", "Auth");
             }
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success("Logged Out");
+            }
+            _notyf.Error(result.Message);
             return RedirectToAction("Register", "Auth");
         }
 
@@ -70,6 +84,9 @@ namespace CvProject.MVC.Controllers
         public IActionResult Logout()
         {
             HttpContext.SignOutAsync();
+
+            _notyf.Success("Logged Out");
+
             return RedirectToAction("Index", "Auth");
         }
     }
