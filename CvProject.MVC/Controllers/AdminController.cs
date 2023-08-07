@@ -15,6 +15,7 @@ using CvProject.DAL.Abstract;
 using System.IO;
 using NuGet.Packaging.Signing;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using CvProject.BLL.Contants;
 
 namespace CvProject.MVC.Controllers
 {
@@ -70,6 +71,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _authService.UserPasswordChange(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminAccount", "Admin");
         }
 
@@ -87,6 +93,11 @@ namespace CvProject.MVC.Controllers
             dto.UserId = GetUserId();
             var result = _adminAccountService.UpdateAdminAccount(dto);
             ViewBag.Message = result.MessageCode;
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminAccount", "Admin");
         }
 
@@ -110,6 +121,11 @@ namespace CvProject.MVC.Controllers
             dto.UserId = GetUserId();
             dto.SocialMediaIcon = "fab fa-" + dto.SocialMediaName.ToLower();
             var result = _userSocialMediaService.AddSocialMedia(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminSocialMedia", "Admin");
         }
 
@@ -117,6 +133,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteSocialMedia(int id)
         {
             var result = _userSocialMediaService.DeleteSocialMedia(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminSocialMedia", "Admin");
         }
 
@@ -132,6 +153,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteExperience(int id)
         {
             var result = _experienceService.DeleteExperience(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -146,6 +172,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId(); ;
             var result = _experienceService.AddExperiece(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -160,6 +191,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult UpdateExperience(UpdateExperienceDto dto)
         {
             var result = _experienceService.UpdateExperiece(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -175,6 +211,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteReference(int id)
         {
             var result = _userReferenceService.DeleteReference(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminReference", "Admin");
         }
 
@@ -189,6 +230,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _userReferenceService.AddReference(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminReference", "Admin");
         }
 
@@ -204,6 +250,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteSkill(int id)
         {
             var result = _skillService.DeleteSkill(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminSkill", "Admin");
         }
 
@@ -218,6 +269,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _skillService.AddSkill(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminSkill", "Admin");
         }
 
@@ -233,6 +289,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteEducation(int id)
         {
             var result = _educationService.DeleteEducation(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -247,6 +308,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _educationService.AddEducation(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -263,6 +329,11 @@ namespace CvProject.MVC.Controllers
         {
 
             var result = _educationService.UpdateEducation(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -278,6 +349,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteCertificate(int id)
         {
             var result = _certificateService.DeleteUserCertificate(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -292,6 +368,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult UpdateCertificate(UpdateUserCertifiacateDto dto)
         {
             var result = _certificateService.UpdateCertificate(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -307,6 +388,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _certificateService.AddCertificate(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -322,6 +408,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteLanguage(int id)
         {
             var result = _languageService.DeleteUserLanguage(id);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminLanguage", "Admin");
         }
 
@@ -336,6 +427,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _languageService.AddUserLanguage(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminLanguage", "Admin");
         }
 
@@ -351,7 +447,11 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteInterest(int id)
         {
             var result = _interestService.DeleteInterest(id);
-            _notyf.Success("File downloaded successfully.");
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminInterest", "Admin");
 
         }
@@ -360,6 +460,11 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             var result = _interestService.AddInterest(dto);
+            if (result.MessageCode == Messages.success)
+            {
+                _notyf.Success(result.Message);
+            }
+            _notyf.Error(result.MessageCode);
             return RedirectToAction("AdminInterest", "Admin");
         }
 
