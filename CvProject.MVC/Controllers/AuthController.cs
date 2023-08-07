@@ -49,10 +49,10 @@ namespace CvProject.MVC.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                _notyf.Success($"Signed in by {user.UserFirstName}");
+                _notyf.Success($"Signed in by {user.UserName}");
                 return RedirectToAction("Index", "Admin");
             }
-                _notyf.Error(result.Message);
+            _notyf.Error(result.Message);
             return RedirectToAction("Index", "Auth");
         }
 

@@ -29,7 +29,7 @@
 
                     @if (Model.UserImage != null)
                     {
-                        <img src="~/UserImageFiles/@Model.UserImage" class="rounded-circle img-responsive mt-2" width="128" height="128">
+                        <img src="~/UserImageFiles/@Model.UserImage" class="rounded-circle img-responsive mt-2" width="128" height="128" style="object-fit: cover;">
                     }
                     <div class="mt-2">
                         <input type="file" name="UserImage" class="form-control" />

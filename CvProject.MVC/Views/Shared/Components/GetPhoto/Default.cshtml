@@ -1,10 +1,10 @@
 ﻿<div class="col-block col-md-auto resume-picture-holder text-center text-md-start">
     @if (ViewBag.Image == null)
     {
-        <img class="picture" src="~/Themes/CvTheme/assets/images/profile.jpg" style="height: 220px;">
+        <img class="picture" src="~/Themes/CvTheme/assets/images/profile.jpg" style="object-fit: scale-down;">
     }
     else
     {
-        <img class="picture" src="~/UserImageFiles/@ViewBag.Image" style="height: 220px; width:220px;">
+        <img class="picture" src="~/UserImageFiles/@ViewBag.Image" style="height: 220px; width:220px; object-fit: cover;">
     }
 </div>

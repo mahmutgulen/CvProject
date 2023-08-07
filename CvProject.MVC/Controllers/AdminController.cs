@@ -75,7 +75,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminAccount", "Admin");
         }
 
@@ -97,7 +100,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminAccount", "Admin");
         }
 
@@ -125,7 +131,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminSocialMedia", "Admin");
         }
 
@@ -137,7 +146,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminSocialMedia", "Admin");
         }
 
@@ -157,7 +169,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -176,7 +191,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -195,7 +213,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminExperience", "Admin");
         }
 
@@ -215,7 +236,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminReference", "Admin");
         }
 
@@ -234,7 +258,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminReference", "Admin");
         }
 
@@ -254,7 +281,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminSkill", "Admin");
         }
 
@@ -273,7 +303,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminSkill", "Admin");
         }
 
@@ -293,7 +326,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -312,7 +348,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -333,7 +372,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminEducation", "Admin");
         }
 
@@ -353,7 +395,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -372,7 +417,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -392,7 +440,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminCertificate", "Admin");
         }
 
@@ -412,7 +463,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminLanguage", "Admin");
         }
 
@@ -431,7 +485,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminLanguage", "Admin");
         }
 
@@ -451,7 +508,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminInterest", "Admin");
 
         }
@@ -464,7 +524,10 @@ namespace CvProject.MVC.Controllers
             {
                 _notyf.Success(result.Message);
             }
-            _notyf.Error(result.MessageCode);
+            else
+            {
+                _notyf.Error(result.MessageCode);
+            }
             return RedirectToAction("AdminInterest", "Admin");
         }
 
@@ -478,7 +541,7 @@ namespace CvProject.MVC.Controllers
             var stream = System.IO.File.OpenRead(path);
 
             var download = _adminAccountService.DownloadPdf(userId);
-            _notyf.Success("File downloaded successfully.");
+            _notyf.Success("Pdf file downloaded successfully.");
             return new FileStreamResult(stream, "application/pdf");
         }
     }

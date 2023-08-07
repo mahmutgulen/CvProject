@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CvProject.DAL.Migrations
 {
     [DbContext(typeof(CvCreatorContext))]
-    [Migration("20230805213947_initialcreate")]
+    [Migration("20230807215031_initialcreate")]
     partial class initialcreate
     {
         /// <inheritdoc />
