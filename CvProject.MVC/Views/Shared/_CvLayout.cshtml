@@ -60,5 +60,8 @@
         </div>
     </article>
     @await Html.PartialAsync("_Script")
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

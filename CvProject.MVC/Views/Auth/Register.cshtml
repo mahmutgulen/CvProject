@@ -116,5 +116,8 @@
 
 
     <div id="mttContainer" class="bootstrapiso notranslate" data-original-title="" title="" style="transform: translate(1378px, 103px);"></div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await Component.InvokeAsync("Notyf")
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

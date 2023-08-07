@@ -48,13 +48,11 @@ namespace CvProject.MVC.Controllers
                 var authProperties = new AuthenticationProperties();
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
-                if (result.MessageCode == Messages.success)
-                {
-                    _notyf.Success($"Signed in by {user.UserFirstName}");
-                }
-                _notyf.Error(result.Message);
+
+                _notyf.Success($"Signed in by {user.UserFirstName}");
                 return RedirectToAction("Index", "Admin");
             }
+                _notyf.Error(result.Message);
             return RedirectToAction("Index", "Auth");
         }
 
