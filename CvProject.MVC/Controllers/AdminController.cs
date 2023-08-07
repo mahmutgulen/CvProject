@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using CvProject.DAL.Abstract;
 using System.IO;
 using NuGet.Packaging.Signing;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace CvProject.MVC.Controllers
 {
@@ -31,8 +32,9 @@ namespace CvProject.MVC.Controllers
         private readonly IUserLanguageService _languageService;
         private readonly IUserInterestService _interestService;
         private readonly IUserDal _userDal;
+        private readonly INotyfService _notyf;
 
-        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService, IUserDal userDal)
+        public AdminController(IAdminAccountService adminAccountService, IAuthService authService, IUserSocialMediaService userSocialMediaService, IUserExperienceService experienceService, IUserReferenceService userReferenceService, IUserSkillService skillService, IUserEducationService educationService, IUserCertificateService certificateService, IUserLanguageService languageService, IUserInterestService interestService, IUserDal userDal, INotyfService notyfService)
         {
             _adminAccountService = adminAccountService;
             _authService = authService;
@@ -45,6 +47,7 @@ namespace CvProject.MVC.Controllers
             _languageService = languageService;
             _interestService = interestService;
             _userDal = userDal;
+            _notyf = notyfService;
         }
         public int GetUserId()
         {
@@ -348,7 +351,9 @@ namespace CvProject.MVC.Controllers
         public IActionResult DeleteInterest(int id)
         {
             var result = _interestService.DeleteInterest(id);
+            _notyf.Success("File downloaded successfully.");
             return RedirectToAction("AdminInterest", "Admin");
+
         }
         [HttpPost]
         public IActionResult AdminInterest(AddUserInterestDto dto)//addInterest
@@ -368,6 +373,7 @@ namespace CvProject.MVC.Controllers
             var stream = System.IO.File.OpenRead(path);
 
             var download = _adminAccountService.DownloadPdf(userId);
+            _notyf.Success("File downloaded successfully.");
             return new FileStreamResult(stream, "application/pdf");
         }
     }
