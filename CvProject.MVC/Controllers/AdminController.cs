@@ -126,6 +126,10 @@ namespace CvProject.MVC.Controllers
         {
             dto.UserId = GetUserId();
             dto.SocialMediaIcon = "fab fa-" + dto.SocialMediaName.ToLower();
+            if (dto.SocialMediaIcon== "fab fa-ınstagram")
+            {
+                dto.SocialMediaIcon = "fab fa-instagram";
+            }
             var result = _userSocialMediaService.AddSocialMedia(dto);
             if (result.MessageCode == Messages.success)
             {
