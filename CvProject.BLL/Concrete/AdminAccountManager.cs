@@ -27,6 +27,7 @@ namespace CvProject.BLL.Concrete
         {
             try
             {
+                //var htmlstring = System.IO.File.ReadAllText("Views/Shared/_CvLayout.cshtml");
                 var htmlstring = System.IO.File.ReadAllText("Views/Shared/_AdminLayout.cshtml");
 
                 var htmltoPdfConverter = new NReco.PdfGenerator.HtmlToPdfConverter();
