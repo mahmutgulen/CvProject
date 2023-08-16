@@ -1,6 +1,5 @@
 # CvProject
-N-tier architecture ile kullanıcıların cv hazırlayıp pdf çıktısı alabileceği bir Asp.Net Core MVC Uygulaması
-Aslında mvc ile ilk serbest çalışmam diyebilirim.
+N-tier architecture ile kullanıcıların cv hazırlayıp pdf çıktısı alabileceği bir Asp.Net Core MVC Uygulaması.
 ![log](https://github.com/mahmutgulen/CvProject/assets/69367981/93884b12-90f2-432c-b99f-55d4798760f5)
 ![account](https://github.com/mahmutgulen/CvProject/assets/69367981/70d2fdaf-2a1c-431e-91f2-24152fe8efaf)
 ![pw change](https://github.com/mahmutgulen/CvProject/assets/69367981/82c854aa-9ea5-4bf3-a28b-0e786bfd7d8c)
